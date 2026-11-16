@@ -10,25 +10,20 @@
 <meta property="og:url" content="https://www.tonyjoy.com/">
 <meta property="og:title" content="Tony Joy">
 <meta property="og:description" content="The patch cable between machines and artists.">
-<meta property="og:image" content="https://www.tonyjoy.com/portrait.jpg">
+<meta property="og:image" content="https://www.tonyjoy.com/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="apple-touch-icon" href="touch-icon.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="description" content="Tony Joy. The patch cable between machines and artists.">
 <style>
 /* Layout idea: a black opening with slow weaving strands, then a calm light page. Few words, large type, real quotes as proof, one accent. */
 :root{
-  --bg:#ffffff; --surface:#f5f5f7; --ink:#1d1d1f; --muted:#6e6e73; --line:#d2d2d7; --accent:#0066cc;
+  --bg:#000000; --surface:#161617; --ink:#f5f5f7; --muted:#a1a1a6; --line:#3a3a3c; --accent:#2997ff;
   --hero-bg:#000000; --hero-ink:#f5f5f7; --hero-muted:#a1a1a6; --hero-line:#2c2c2e; --hero-accent:#2997ff;
-  --fail:#b3261e;
+  --fail:#ff6961;
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
-  color-scheme:light;
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#000000; --surface:#161617; --ink:#f5f5f7; --muted:#a1a1a6; --line:#3a3a3c; --accent:#2997ff; --fail:#ff6961; color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#000000; --surface:#161617; --ink:#f5f5f7; --muted:#a1a1a6; --line:#3a3a3c; --accent:#2997ff; --fail:#ff6961; color-scheme:dark;
+  color-scheme:dark;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:60px}
@@ -247,8 +242,7 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
   <section id="work">
     <div class="wrap">
       <p class="kicker">Work</p>
-      <h2>Both sides of the studio glass.</h2>
-      <p class="sub">I've helped shape the tools, and the music made with them.</p>
+      <h2 style="margin-bottom:48px">I've shaped the tools, and the music made with them.</h2>
       <div class="bento">
         <article class="card">
           <h3>Sound Particles</h3>
@@ -280,7 +274,7 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
         <p class="kicker">The invisible engineer</p>
         <h2>I sat in the engineer's chair before I sat at the product table.</h2>
         <p>As a music engineer, my job was to make a room full of complex machines run so smoothly that artists forgot I was in it. The fires were out before they knew there was one.</p>
-        <p class="now">Now I sit on the other side of the glass too, shaping products for music and post-production. I use what I help make, push it until it breaks, then help the teams fix it. I'm as comfortable with product definition, prompt engineering and generative AI workflows as I am recording a Bösendorfer for a Hollywood film.</p>
+        <p class="now">Now I sit at the product table too, shaping products for music and post-production. I use what I help make, push it until it breaks, then help the teams fix it. I'm as comfortable with product definition, prompt engineering and generative AI workflows as I am recording a Bösendorfer for a Hollywood film.</p>
       </div>
       <figure class="me">
         <div class="vig photo"><img src="portrait.jpg" width="1120" height="1400" alt="Tony Joy, smiling, seated at a mixing desk in a studio"></div>
@@ -355,7 +349,7 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
     <div class="wrap">
       <p class="kicker">On screen</p>
       <h2>Hollywood and Bollywood.</h2>
-      <p class="sub">String sections, percussion and choirs. Vocalists in English, Hindi, Tamil and Brazilian Portuguese. Full film list on <a href="https://www.imdb.com/name/nm5068645/">IMDb</a>.</p>
+      <p class="sub">String sections, percussion and choirs. Vocalists in English, Hindi, Tamil and Brazilian Portuguese. Full film list on <a href="https://www.imdb.com/name/nm5068645/" target="_blank" rel="noopener">IMDb</a>.</p>
       <div class="posters" id="posters"></div>
       <details>
         <summary>All credits</summary>
@@ -371,9 +365,9 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
       <p class="sub">One playlist. 250+ songs I worked on, across artists.</p>
       <div class="player live"><iframe title="Music Engineering Portfolio playlist on Apple Music" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" height="450" style="width:100%;overflow:hidden;border-radius:14px;border:0" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/playlist/music-engineering-portfolio-tony-joy/pl.u-Zmblxd1CZpMNgm"></iframe></div>
       <div class="links">
-        <a href="https://music.apple.com/us/playlist/music-engineering-portfolio-tony-joy/pl.u-Zmblxd1CZpMNgm">Apple Music</a>
-        <a href="https://open.spotify.com/playlist/5hFJJRtEdsEnwo2dcv043J">Spotify</a>
-        <a href="https://soundcloud.com/tony-joy-116447150/sets/tony_joy_portfolio/s-WcTJvhRZxiG">SoundCloud</a>
+        <a href="https://music.apple.com/us/playlist/music-engineering-portfolio-tony-joy/pl.u-Zmblxd1CZpMNgm" target="_blank" rel="noopener">Apple Music</a>
+        <a href="https://open.spotify.com/playlist/5hFJJRtEdsEnwo2dcv043J" target="_blank" rel="noopener">Spotify</a>
+        <a href="https://soundcloud.com/tony-joy-116447150/sets/tony_joy_portfolio/s-WcTJvhRZxiG" target="_blank" rel="noopener">SoundCloud</a>
       </div>
     </div>
   </section>
@@ -384,7 +378,7 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
         <div class="rec"><dt>Recognition</dt><dd>Sports Emmy nominee, 2019 <span>(shared). Outstanding Music Composition/Direction/Lyrics, Momentum Generation</span></dd></div>
         <div class="rec"><dt>Member</dt><dd>Recording Academy <span>(voting member)</span>, Audio Engineering Society, Motion Picture Sound Editors <span>(affiliate)</span></dd></div>
         <div class="rec"><dt>Education</dt><dd>MA, Post-Production Sound Design<br><span>Bournemouth University</span></dd></div>
-        <div class="rec"><dt>Recommended by</dt><dd>A.R. Rahman, Jeff Rosica, Nuno Fonseca and others <span>on</span> <a href="https://www.linkedin.com/in/music-tonyjoy/">LinkedIn</a></dd></div>
+        <div class="rec"><dt>Recommended by</dt><dd>A.R. Rahman, Jeff Rosica, Nuno Fonseca and others <span>on</span> <a href="https://www.linkedin.com/in/music-tonyjoy/" target="_blank" rel="noopener">LinkedIn</a></dd></div>
       </dl>
     </div>
   </section>
@@ -396,9 +390,9 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
       <h2>Building something where AI meets creative expression? Let's talk.</h2>
       <p class="mail">music (at) tonyjoy.com</p>
       <div class="links">
-        <a href="https://www.linkedin.com/in/music-tonyjoy/">LinkedIn</a>
-        <a href="https://www.imdb.com/name/nm5068645/">IMDb</a>
-        <a href="https://www.instagram.com/music.tonyjoy/">Instagram</a>
+        <a href="https://www.linkedin.com/in/music-tonyjoy/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.imdb.com/name/nm5068645/" target="_blank" rel="noopener">IMDb</a>
+        <a href="https://www.instagram.com/music.tonyjoy/" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
   </div>
