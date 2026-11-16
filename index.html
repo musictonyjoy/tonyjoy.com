@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tony Joy</title>
+<link rel="canonical" href="https://www.tonyjoy.com/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.tonyjoy.com/">
+<meta property="og:title" content="Tony Joy">
+<meta property="og:description" content="The patch cable between machines and artists.">
+<meta property="og:image" content="https://www.tonyjoy.com/portrait.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Tony Joy. The patch cable between machines and artists.">
+<style>
+/* Layout idea: a black opening with slow weaving strands, then a calm light page. Few words, large type, real quotes as proof, one accent. */
+:root{
+  --bg:#ffffff; --surface:#f5f5f7; --ink:#1d1d1f; --muted:#6e6e73; --line:#d2d2d7; --accent:#0066cc;
+  --hero-bg:#000000; --hero-ink:#f5f5f7; --hero-muted:#a1a1a6; --hero-line:#2c2c2e; --hero-accent:#2997ff;
+  --fail:#b3261e;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#000000; --surface:#161617; --ink:#f5f5f7; --muted:#a1a1a6; --line:#3a3a3c; --accent:#2997ff; --fail:#ff6961; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#000000; --surface:#161617; --ink:#f5f5f7; --muted:#a1a1a6; --line:#3a3a3c; --accent:#2997ff; --fail:#ff6961; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:60px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.5;letter-spacing:-0.011em;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:24px;padding-right:24px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hero-line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:8px 20px;min-height:48px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.brand{font-size:13px;font-weight:600;letter-spacing:.14em;color:var(--hero-ink)}
+.brand:hover{text-decoration:none}
+.nav ul{display:flex;flex-wrap:wrap;gap:6px 22px;list-style:none;margin:0;padding:0;font-size:13px}
+.nav ul a{color:var(--hero-muted)}
+.nav ul a:hover{color:var(--hero-ink);text-decoration:none}
+
+/* dark stages with weaving strands */
+.stage{position:relative;background:var(--hero-bg);color:var(--hero-ink);overflow:hidden}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.stage > .wrap, .stage > .proof{position:relative}
+
+.hero .wrap{padding-top:128px;padding-bottom:96px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.16em;color:var(--hero-muted);margin:0 0 24px}
+h1{font-size:clamp(44px,7.8vw,100px);line-height:1.0;letter-spacing:-0.04em;font-weight:700;margin:0;max-width:10em;text-wrap:balance}
+.tagline{font-size:clamp(22px,3vw,34px);line-height:1.2;letter-spacing:-0.02em;font-weight:600;color:var(--hero-ink);margin:30px 0 0}
+.lede{font-size:clamp(19px,2.1vw,24px);line-height:1.4;color:var(--hero-muted);max-width:32em;margin:30px 0 0}
+.cta{display:flex;flex-wrap:wrap;gap:12px 14px;margin-top:40px;align-items:center}
+.btn{display:inline-block;padding:11px 22px;border-radius:999px;font-size:17px;background:var(--hero-accent);color:#fff}
+.btn:hover{text-decoration:none;filter:brightness(1.1)}
+.cta .txt{color:var(--hero-accent);font-size:17px;padding:11px 8px}
+.cta .txt::after{content:" \203A"}
+
+.proof{border-top:1px solid var(--hero-line);background:rgba(0,0,0,.35)}
+.proof .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:30px 22px 34px 0;border-right:1px solid var(--hero-line);margin-right:22px}
+.stat:last-child{border-right:0;margin-right:0}
+.stat b{display:block;font-size:clamp(28px,3.6vw,44px);letter-spacing:-0.03em;line-height:1.05;font-weight:700;font-variant-numeric:tabular-nums}
+.stat span{display:block;font-size:14px;line-height:1.4;color:var(--hero-muted);margin-top:10px;max-width:22em}
+
+section{padding:104px 0}
+main > section + section{border-top:1px solid var(--line)}
+.kicker{font-size:13px;font-weight:600;letter-spacing:.16em;color:var(--muted);margin:0 0 14px;text-transform:uppercase}
+h2{font-size:clamp(32px,4.6vw,56px);line-height:1.06;letter-spacing:-0.03em;font-weight:700;margin:0 0 16px;max-width:17em;text-wrap:balance}
+.sub{color:var(--muted);font-size:21px;line-height:1.4;max-width:34em;margin:0 0 52px}
+
+/* photo slots (preview only) */
+.slot{border-radius:22px;border:1px dashed var(--line);background:var(--surface);display:grid;place-items:center;text-align:center;color:var(--muted);font-size:13px;line-height:1.4;padding:16px;min-height:120px}
+
+/* story */
+.story{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:56px;align-items:center}
+.story p{font-size:21px;line-height:1.5;margin:0 0 18px;max-width:30em}
+.story p.big{font-size:clamp(24px,2.8vw,32px);line-height:1.25;letter-spacing:-0.022em;font-weight:600;margin-top:34px}
+.story .slot{aspect-ratio:4/5}
+.story p.now{margin-top:22px;margin-bottom:0}
+.me{margin:0}
+.me .photo{border-radius:22px}
+.me img{display:block;width:100%;height:auto}
+.me figcaption{margin-top:16px;font-size:16px;line-height:1.45;color:var(--ink);font-style:italic;font-weight:500;max-width:26em}
+
+/* quotes */
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.quote{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:56px;align-items:center}
+.quote.flip{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
+.quote.flip .slot{order:2}
+.quote .slot{aspect-ratio:4/3}
+blockquote{margin:0}
+blockquote p{text-indent:-0.42em;font-size:clamp(21px,2.3vw,28px);line-height:1.3;letter-spacing:-0.022em;font-weight:600;margin:0;text-wrap:pretty}
+blockquote footer{background:none;border:0;padding:0;margin-top:24px;font-size:15px;color:var(--muted)}
+blockquote footer b{color:var(--ink);font-weight:600}
+
+/* chapters */
+.bento{display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:20px}
+.card{background:var(--surface);border-radius:26px;padding:36px 32px;display:flex;flex-direction:column;gap:14px}
+.card .slot{background:var(--bg);aspect-ratio:16/10;min-height:0;margin-bottom:10px}
+.card h3{font-size:28px;line-height:1.12;letter-spacing:-0.025em;margin:0;font-weight:700}
+.receipt{margin:auto -26px -30px;padding-top:22px}
+.receipt figcaption{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:0 32px 10px}
+.receipt img{display:block;width:100%;height:auto;border-radius:10px 10px 20px 20px}
+.vig{position:relative;overflow:hidden}
+.vig::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.42) 100%)}
+.role{font-size:14px;color:var(--muted);margin:-6px 0 0}
+.card p{margin:0;font-size:17px;line-height:1.5}
+.more{margin:40px 0 0;font-size:19px;color:var(--muted)}
+
+/* builds */
+.build{display:grid;grid-template-columns:90px minmax(0,1fr) minmax(0,1.5fr);gap:28px;padding:28px 0;border-top:1px solid var(--line);align-items:baseline}
+.build:last-child{border-bottom:1px solid var(--line)}
+.build time{font-size:15px;color:var(--muted);font-variant-numeric:tabular-nums}
+.build h3{font-size:24px;line-height:1.15;letter-spacing:-0.022em;margin:0;font-weight:700;text-wrap:balance}
+.build p{margin:0;font-size:17px;line-height:1.5;max-width:36em}
+.tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.12em;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin-left:10px;vertical-align:4px}
+
+/* films */
+.posters{display:grid;grid-template-columns:repeat(6,1fr);gap:28px 16px}
+.poster{margin:0;display:flex;flex-direction:column;gap:10px}
+.poster img{display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;border-radius:12px;background:var(--surface)}
+.poster figcaption{display:flex;flex-direction:column;gap:3px}
+.poster b{font-size:14px;line-height:1.2;letter-spacing:-0.01em}
+.poster i{font-style:normal;font-size:12px;color:var(--muted);line-height:1.3}
+.hint{font-size:13px;color:var(--muted);margin:18px 0 0}
+details{margin-top:44px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+summary{cursor:pointer;padding:20px 0;font-size:19px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--muted);font-weight:400}
+details[open] summary::after{content:"\2212"}
+.credits{columns:2;column-gap:56px;padding-bottom:8px}
+.yr{break-inside:avoid;display:grid;grid-template-columns:56px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--line)}
+.yr h3{margin:0;font-size:15px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+.yr ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.yr li{font-size:15px;line-height:1.4}
+.yr li span{color:var(--muted)}
+
+/* listen */
+.player{border-radius:26px;background:var(--surface);min-height:260px;display:grid;place-items:center;text-align:center;padding:40px;color:var(--muted)}
+.player.live{display:block;padding:14px;min-height:0}
+.player strong{display:block;color:var(--ink);font-size:21px;margin-bottom:6px}
+.links{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:28px;font-size:17px}
+.links a::after{content:" \203A"}
+
+/* record */
+.record{display:grid}
+.rec{display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;padding:22px 0;border-top:1px solid var(--line);align-items:baseline}
+.rec:last-child{border-bottom:1px solid var(--line)}
+.rec dt{font-size:13px;font-weight:600;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.rec dd{margin:0;font-size:19px;line-height:1.45}
+.rec dd span{color:var(--muted)}
+.smile{margin:0 auto;text-align:center;font-size:clamp(26px,3.6vw,44px);line-height:1.15;letter-spacing:-0.03em;font-weight:700;max-width:16em;text-wrap:balance}
+#smile{padding:120px 0}
+.note{margin:72px 0 0;font-size:clamp(24px,3.2vw,38px);line-height:1.2;letter-spacing:-0.025em;font-weight:700;max-width:22em;text-wrap:balance}
+.note span{color:var(--muted)}
+
+/* gentle reveal on scroll: only when script runs, never for reduced motion */
+.js-rv .rv{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.js-rv .rv.in{opacity:1;transform:none}
+.js-rv .bento .rv:nth-child(2),.js-rv .quotes .rv:nth-child(2){transition-delay:.12s}
+.js-rv .bento .rv:nth-child(3){transition-delay:.24s}
+
+/* contact */
+.contact h2{max-width:14em}
+.contact .wrap{padding-top:120px;padding-bottom:120px}
+.contact .mail{font-size:clamp(22px,3vw,32px);font-weight:600;letter-spacing:-0.02em;margin:28px 0 0}
+.contact .links a{color:var(--hero-accent)}
+body > footer{background:var(--hero-bg);color:#58585c;border-top:1px solid var(--hero-line);padding:30px 0 48px;font-size:14px}
+.cities{margin:0;line-height:2;letter-spacing:.02em;max-width:none}
+.cities b{color:var(--hero-ink);font-weight:600;white-space:nowrap;animation:glow 12s ease-in-out infinite}
+@keyframes glow{0%,100%{opacity:.6;text-shadow:none}50%{opacity:1;text-shadow:0 0 14px rgba(41,151,255,.55)}}
+@media (prefers-reduced-motion:reduce){.cities b{animation:none}}
+body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:900px){
+  .hero .wrap{padding-top:84px;padding-bottom:64px}
+  .proof .wrap{grid-template-columns:repeat(2,1fr)}
+  .stat{border-right:0;margin-right:0;padding-right:16px;border-bottom:1px solid var(--hero-line)}
+  .story,.quote,.quote.flip,.quotes{grid-template-columns:1fr;gap:40px}
+  .quote.flip .slot{order:0}
+  .story .slot{aspect-ratio:4/3}
+  .bento{grid-template-columns:1fr}
+  .build,.rec{grid-template-columns:1fr;gap:8px}
+  .posters{grid-template-columns:repeat(3,1fr)}
+  .credits{columns:1}
+  section{padding:72px 0}
+  .contact .wrap{padding-top:84px;padding-bottom:84px}
+}
+@media (max-width:460px){
+  .proof .wrap{grid-template-columns:1fr}
+  .posters{grid-template-columns:repeat(2,1fr)}
+  .card{padding:26px}
+  .receipt{margin:auto -20px -20px}
+
+  .nav ul{gap:6px 16px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">TONY JOY</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#built">Built</a></li>
+        <li><a href="#screen">On screen</a></li>
+        <li><a href="#listen">Listen</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="stage hero">
+    <canvas class="weave" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <h1>The patch cable between machines and artists.</h1>
+      <p class="lede">I put new technology into the hands of the people who make films, music and games. Then I take their feedback to the product and engineering teams who build the tools.</p>
+      <div class="cta">
+        <a class="btn" href="#contact">Let's talk</a>
+        <a class="txt" href="#listen">Listen to the work</a>
+      </div>
+    </div>
+    <div class="proof">
+      <div class="wrap">
+        <div class="stat"><b>25+</b><span>Film credits on IMDb, across Hollywood and Bollywood</span></div>
+        <div class="stat"><b>250+</b><span>Songs I worked on, across artists</span></div>
+        <div class="stat"><b>750+</b><span>Radio commercials produced, casting and directing the voiceover for each one</span></div>
+        <div class="stat"><b>1,000+</b><span>Ringtones for early mobile phones, some you could feel</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="work">
+    <div class="wrap">
+      <p class="kicker">Work</p>
+      <h2>Both sides of the studio glass.</h2>
+      <p class="sub">I've helped shape the tools, and the music made with them.</p>
+      <div class="bento">
+        <article class="card">
+          <h3>Sound Particles</h3>
+          <p class="role">VP, Business Development and Creative Services</p>
+          <p>The global link between its engineering and product teams and the people who use its tools. I built partnerships with global technology companies and leading resellers.</p>
+          <p>I helped shape both sides of the product line: creator tools like Sound Particles 3 and Beat Panner, and a legally cleared B2B audio dataset for AI developers.</p>
+        </article>
+        <article class="card">
+          <h3>Avid</h3>
+          <p class="role">Pro Audio Solutions Specialist</p>
+          <p>Built and ran Avid's first Immersive Audio Lab, where spatial music workflows for Pro Tools were invented and tested.</p>
+          <p>I brokered the partnerships with Harman, Auralex and others that equipped it.</p>
+          <figure class="receipt"><img src="protools-about.jpg" width="971" height="696" loading="lazy" alt="Pro Tools Ultimate About screen, version 2022.5.0, with the name Tony Joy highlighted in the credits"></figure>
+        </article>
+        <article class="card">
+          <h3>A.R. Rahman</h3>
+          <p class="role">Technology advisor since 2007</p>
+          <p>For eight of those years I engineered and ran his Los Angeles studio, where film scores for Hollywood and Bollywood were made.</p>
+          <p>I still filter which new tools reach his creative process, and invent the workflows around them.</p>
+        </article>
+      </div>
+      <p class="more">The full story is in my resume. <a href="#contact">Ask me for it.</a></p>
+    </div>
+  </section>
+
+  <section id="story">
+    <div class="wrap story">
+      <div>
+        <p class="kicker">The invisible engineer</p>
+        <h2>I sat in the engineer's chair before I sat at the product table.</h2>
+        <p>As a music engineer, my job was to make a room full of complex machines run so smoothly that artists forgot I was in it. The fires were out before they knew there was one.</p>
+        <p class="now">Now I sit on the other side of the glass too, shaping products for music and post-production. I use what I help make, push it until it breaks, then help the teams fix it. I'm as comfortable with product definition, prompt engineering and generative AI workflows as I am recording a Bösendorfer for a Hollywood film.</p>
+      </div>
+      <figure class="me">
+        <div class="vig photo"><img src="portrait.jpg" width="1120" height="1400" alt="Tony Joy, smiling, seated at a mixing desk in a studio"></div>
+        <figcaption>I'm a firm believer in the power of a smile. A lesson from Mother Teresa, whom I met as a child.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="words">
+    <div class="wrap quotes">
+      <blockquote>
+        <p>“He possesses a unique ability to combine research, discovery, and incubation, seamlessly culminating in the development and deployment of cutting-edge technologies that push the boundaries of artistic expression.”</p>
+        <footer><b>A.R. Rahman</b>, Academy Award-winning composer, on LinkedIn</footer>
+      </blockquote>
+      <blockquote>
+        <p>“Though I was CEO over a company with a lot of team members, Tony is someone that I got to know quite well. [...] I would also hire him again without hesitating if given the right opportunity.”</p>
+        <footer><b>Jeff Rosica</b>, former CEO, Avid Technology, on LinkedIn</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section id="built">
+    <div class="wrap">
+      <p class="kicker">Built</p>
+      <h2 style="margin-bottom:48px">Workflows artists and engineers didn't know they needed.</h2>
+      <div class="builds">
+        <article class="build">
+          <time>Now</time>
+          <h3>Quantum, in audio</h3>
+          <p>Exploring what quantum measurement could mean for audio production tools.</p>
+        </article>
+        <article class="build">
+          <time>2026</time>
+          <h3>Hands on with generative AI</h3>
+          <p>I work with generative audio tools as they emerge: ElevenLabs, Suno, Moises, AceForge, Google Magenta. During my 2026 residency with Google's Flow Music Sessions, I published an audio plugin, built with AI coding agents and inspired by an Icelandic sea cave and its puffins.</p>
+        </article>
+        <article class="build">
+          <time>2019</time>
+          <h3>Avid's first Immersive Audio Lab</h3>
+          <p>A full Dolby Atmos room inside a corporate office was a hard sell. I designed and built it from an empty room. It went on to host AES and CAS community events, and about two years later headquarters built a second room modeled on it.</p>
+        </article>
+        <article class="build">
+          <time>2015</time>
+          <h3>A spatial record, early<span class="tag">FAILED</span></h3>
+          <p>Co-produced at United Recording with Sankar Thiagasamudram, CEO of Audeze. An early attempt at immersive, reactive music production. It failed. I list it anyway.</p>
+        </article>
+        <article class="build">
+          <time>2014</time>
+          <h3>A voice you can play</h3>
+          <p>Wired Symbolic Sound's Kyma to a Haken Continuum so A.R. Rahman could play a recorded singer's voice as an instrument, bending pitch while the formants held, so it stayed human.</p>
+        </article>
+        <article class="build">
+          <time>2014</time>
+          <h3>Gestures into Pro Tools</h3>
+          <p>Connected Leap Motion to Pro Tools so natural hand gestures could drive audio production.</p>
+        </article>
+        <article class="build">
+          <time>2010</time>
+          <h3>Composing in surround</h3>
+          <p>Engineered A.R. Rahman's room so he could compose in 5.1, when 5.1 was mostly reserved for mixing. He triggered sampled instruments from an iPad, each touch placing the sound in the room.</p>
+        </article>
+        <article class="build">
+          <time>2004</time>
+          <h3>Ringtones you could feel</h3>
+          <p>Vibration patterns composed to follow the bass line, on phones from Sony Ericsson, Motorola, Kyocera and Nokia. Some shipped with DRM I developed and deployed: thirty plays, then the ringtone locked until you bought it.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen">
+    <div class="wrap">
+      <p class="kicker">On screen</p>
+      <h2>Hollywood and Bollywood.</h2>
+      <p class="sub">String sections, percussion and choirs. Vocalists in English, Hindi, Tamil and Brazilian Portuguese. Full film list on <a href="https://www.imdb.com/name/nm5068645/">IMDb</a>.</p>
+      <div class="posters" id="posters"></div>
+      <details>
+        <summary>All credits</summary>
+        <div class="credits" id="creditlist"></div>
+      </details>
+    </div>
+  </section>
+
+  <section id="listen">
+    <div class="wrap">
+      <p class="kicker">Listen</p>
+      <h2>Hear the work.</h2>
+      <p class="sub">One playlist. 250+ songs I worked on, across artists.</p>
+      <div class="player live"><iframe title="Music Engineering Portfolio playlist on Apple Music" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" height="450" style="width:100%;overflow:hidden;border-radius:14px;border:0" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/playlist/music-engineering-portfolio-tony-joy/pl.u-Zmblxd1CZpMNgm"></iframe></div>
+      <div class="links">
+        <a href="https://music.apple.com/us/playlist/music-engineering-portfolio-tony-joy/pl.u-Zmblxd1CZpMNgm">Apple Music</a>
+        <a href="https://open.spotify.com/playlist/5hFJJRtEdsEnwo2dcv043J">Spotify</a>
+        <a href="https://soundcloud.com/tony-joy-116447150/sets/tony_joy_portfolio/s-WcTJvhRZxiG">SoundCloud</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="record">
+    <div class="wrap">
+      <dl class="record">
+        <div class="rec"><dt>Recognition</dt><dd>Sports Emmy nominee, 2019 <span>(shared). Outstanding Music Composition/Direction/Lyrics, Momentum Generation</span></dd></div>
+        <div class="rec"><dt>Member</dt><dd>Recording Academy <span>(voting member)</span>, Audio Engineering Society, Motion Picture Sound Editors <span>(affiliate)</span></dd></div>
+        <div class="rec"><dt>Education</dt><dd>MA, Post-Production Sound Design<br><span>Bournemouth University</span></dd></div>
+        <div class="rec"><dt>Recommended by</dt><dd>A.R. Rahman, Jeff Rosica, Nuno Fonseca and others <span>on</span> <a href="https://www.linkedin.com/in/music-tonyjoy/">LinkedIn</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+
+  <div class="stage contact" id="contact">
+    <canvas class="weave" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <h2>Building something where AI meets creative expression? Let's talk.</h2>
+      <p class="mail">music (at) tonyjoy.com</p>
+      <div class="links">
+        <a href="https://www.linkedin.com/in/music-tonyjoy/">LinkedIn</a>
+        <a href="https://www.imdb.com/name/nm5068645/">IMDb</a>
+        <a href="https://www.instagram.com/music.tonyjoy/">Instagram</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap"><p class="cities"><b>Los Angeles</b><br>Work has taken me to Portugal &middot; South Africa &middot; United Kingdom &middot; Canada &middot; India &middot; United Arab Emirates &middot; Hong Kong &middot; Mauritius</p></div>
+</footer>
+
+<script>
+var POSTERS = [
+  ["The Hundred-Foot Journey","2014","Additional Scoring","hundred-foot-journey"],
+  ["Million Dollar Arm","2014","Asst. Music Scoring Mixer + Engineer","million-dollar-arm"],
+  ["Pelé","2016","Music Engineer","pele"],
+  ["People Like Us","2012","Sound Engineer","people-like-us"],
+  ["Momentum Generation","2018","Music Scoring Mixer","momentum-generation"],
+  ["Rockstar","2011","Sound Engineer","rockstar"],
+  ["Highway","2014","Sound Engineer","highway"],
+  ["Jab Tak Hai Jaan","2012","Sound Engineer","jab-tak-hai-jaan"],
+  ["Raanjhanaa / Ambikapathy","2013","Sound Engineer, Hindi and Tamil releases","raanjhanaa"],
+  ["Mohenjo Daro","2016","Sound Engineer","mohenjo-daro"],
+  ["Love Sonia","2018","Music Engineer","love-sonia"],
+  ["OK Jaanu","2017","Mastering Engineer, “Sunn Bhavara”","ok-jaanu"]
+];
+var CREDITS = [
+  ["2024",[["Mastering Engineer","Red Baraat"]]],
+  ["2023",[["Mastering Engineer","Red Baraat"]]],
+  ["2022",[["Systems Engineering + Integration","A.R. Rahman, Panchathan Hollywood Studio, Los Angeles. Avid S6, Genelec Ones Dolby Atmos 7.1.4"]]],
+  ["2019",[["Front of House Engineer","Vidya Vox, Honda Celebration of Light, Canada"],["Front of House Engineer","Vidya Vox, Festival of Colors tour, United States"],["Music Engineer","99 Songs"]]],
+  ["2018",[["Music Engineer","Love Sonia"],["Front of House Engineer","Kuthu Fire Tour, Mauritius"],["Music Scoring Mixer","Momentum Generation. 2019 Sports Emmy nominee (shared), Outstanding Music Composition/Direction/Lyrics"],["Mastering Engineer","Minnale"],["Mastering Engineer","Tamil Born Killer"]]],
+  ["2017",[["Mastering Engineer","I Miss You"],["Front of House Engineer","Kuthu Fire Tour. Boston, Durban, Johannesburg, Dallas, Pune, Kolkata, Hyderabad, Bangalore, Delhi, Ahmedabad"],["Mastering Engineer","Kuthu Fire EP"],["Front of House Engineer","Vidya Vox Live. Mumbai, Chennai, Bangalore, San Francisco, Los Angeles, Hong Kong, Napa Valley"],["Mastering Engineer","Sunn Bhavara, OK Jaanu"]]],
+  ["2016",[["Performance Rig Design + Systems Engineering","A.R. Rahman, TED 2016, Vancouver"],["Sound Engineer","Mohenjo Daro"],["Studio Integration + Systems Engineering + Commissioning","A.R. Rahman, Panchathan Record Inn, India"],["Mastering Engineer","Budhia Singh: Born to Run"],["Sound Engineer","24"],["Music Engineer","Pelé"],["Mastering Engineer","Drifter"],["Mastering Engineer","Unnai Sernthal"]]],
+  ["2015",[["Mastering Engineer","Lonely Sound"],["Mastering Engineer","Naan Engu Pogiraen"],["Sound Engineer","I"],["Mixing + Mastering Engineer","Cosmic & Eternal Love"]]],
+  ["2014",[["Mastering Engineer","Margham Kali"],["Mastering Engineer","Children of War"],["Sound Engineer","Highway"],["Additional Scoring","The Hundred-Foot Journey"],["Sound Engineer","Raunaq"],["Mixing Engineer","Lekar Hum Deewana Dil"],["Mixing Engineer + Sound Engineer","Kochadaiiyaan"],["Asst. Music Scoring Mixer + Engineer","Million Dollar Arm"]]],
+  ["2013",[["Sound Engineer","Raanjhanaa"],["Sound Engineer","Maryan"],["Sound Engineer","Kadal"]]],
+  ["2012",[["Sound Engineer","Infinite Love"],["Sound Engineer","Jab Tak Hai Jaan"],["Mixing Engineer","Nimma Nimma. Isles of Wonder, London 2012 Olympic Games"],["Sound Engineer","Classic Incantations"],["Sound Engineer","People Like Us"],["Sound Engineer","Ek Deewana Tha"],["Sound Engineer","Oscar Sangamam, Celebrate the Music, 84th Academy Awards"]]],
+  ["2011",[["Sound Engineer","Rockstar"],["Sound Engineer","SuperHeavy"],["Sound Engineer","Sajna Re, Gems, Michael Bolton"]]],
+  ["2010",[["Inventor","Omnisonus"],["Studio Integration + Systems Engineering + Commissioning","A.R. Rahman, Panchathan Hollywood Studio, Los Angeles. Euphonix System 5, Bowers & Wilkins 5.1"]]],
+  ["2008",[["Radio Production Engineer","Radio 1 and Radio 2, Gulf News Broadcasting, Dubai. Through 2009"]]],
+  ["2007",[["Additional Sound Design","Anandabhairavi"]]],
+  ["2004",[["Mastering Engineer, New Media","FirstLight FZ LLC, Dubai Internet City. Through 2005"]]]
+];
+
+function el(tag, cls, text){var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e;}
+var p=document.getElementById('posters');
+POSTERS.forEach(function(f){var d=el('figure','poster'); var im=el('img'); im.src='poster-'+f[3]+'.jpg'; im.alt=f[0]+' poster'; im.width=600; im.height=900; im.loading='lazy'; d.appendChild(im); var c=el('figcaption'); c.appendChild(el('b',null,f[0])); c.appendChild(el('i',null,f[1]+' · '+f[2])); d.appendChild(c); p.appendChild(d);});
+var c=document.getElementById('creditlist');
+CREDITS.forEach(function(y){
+  var row=el('div','yr'); row.appendChild(el('h3',null,y[0]));
+  var ul=el('ul');
+  y[1].forEach(function(i){var li=el('li'); li.appendChild(document.createTextNode(i[1]+' ')); li.appendChild(el('span',null,i[0])); ul.appendChild(li);});
+  row.appendChild(ul); c.appendChild(row);
+});
+
+/* Reveal: mark blocks, then fade each in once as it enters the viewport. */
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce || !('IntersectionObserver' in window)) return;
+  var els = document.querySelectorAll('main > section .kicker, main > section h2, main > section .sub, .card, .more, .story > div > p, .me, .quotes blockquote, .build, .posters, details, .player, main > section .links, .rec, .contact .wrap > *');
+  els.forEach(function(e){ e.classList.add('rv'); });
+  document.documentElement.classList.add('js-rv');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.05});
+  els.forEach(function(e){ io.observe(e); });
+  setTimeout(function(){ els.forEach(function(e){ var r=e.getBoundingClientRect(); if(r.top < window.innerHeight) e.classList.add('in'); }); }, 1200);
+})();
+
+/* Weaving strands: slow waves that braid and part on a 26-second breath, shaped by a logarithmic curve
+   that eases in and out with no sudden starts. Each strand carries points; when points on different strands
+   drift close, a spark bridges them and fades as they part. Paused off screen; still frame for reduced motion. */
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var COLORS = ['41,151,255','191,90,242','100,210,255','94,92,230','41,151,255','100,210,255'];
+  var LOG10 = Math.log(10), NEAR = 40, DOTS = 10;
+  function lg(x){ return Math.log(1+9*x)/LOG10; }                  /* 0..1, steep then flat */
+  var PERIOD = 26;                                               /* seconds per breath */
+  function breathAt(t){ var c=0.5-0.5*Math.cos(t*Math.PI*2/PERIOD); return Math.log(1+3*c)/Math.log(4); }  /* cosine keeps both ends at rest; the log leans it toward open */
+  document.querySelectorAll('canvas.weave').forEach(function(cv){
+    var ctx = cv.getContext('2d'), w=0, h=0, dpr=1, visible=true, raf=0, last=0;
+    var strands = COLORS.map(function(col,i){
+      return {col:col, f1:0.8+i*0.23, f2:1.7+i*0.31, p1:i*1.3, p2:i*2.1, off:(i-2.5)/2.5, sp:0.012+i*0.002};
+    });
+    function size(){
+      var r=cv.getBoundingClientRect(); dpr=Math.min(window.devicePixelRatio||1,2);
+      w=r.width; h=r.height; cv.width=Math.round(w*dpr); cv.height=Math.round(h*dpr); ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    function yAt(s,u,t,breath){
+      var spread = h*0.21*(0.12+0.88*breath);
+      var wave = Math.sin(u*Math.PI*2*s.f1 + s.p1 + t*s.sp*6.283)*0.6 + Math.sin(u*Math.PI*2*s.f2 + s.p2 - t*s.sp*4.1)*0.4;
+      return h*0.54 + s.off*spread + wave*h*0.11;
+    }
+    function draw(ms){
+      var t=ms/1000, breath=breathAt(t), pts=[];
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation='lighter';
+      var steps=Math.max(40,Math.round(w/14));
+      strands.forEach(function(s,i){
+        var g=ctx.createLinearGradient(0,0,w,0);
+        g.addColorStop(0,'rgba('+s.col+',0)'); g.addColorStop(0.35,'rgba('+s.col+',0.20)'); g.addColorStop(0.75,'rgba('+s.col+',0.26)'); g.addColorStop(1,'rgba('+s.col+',0)');
+        ctx.strokeStyle=g; ctx.lineWidth=1.2; ctx.beginPath();
+        for(var k=0;k<=steps;k++){var u=k/steps, x=u*w, y=yAt(s,u,t,breath); if(k) ctx.lineTo(x,y); else ctx.moveTo(x,y);}
+        ctx.stroke();
+        for(var j=0;j<DOTS;j++){
+          var u2=((j/DOTS)+t*0.0032*(1+i*0.12)+i*0.07)%1, edge=Math.sin(u2*Math.PI);
+          pts.push({x:u2*w, y:yAt(s,u2,t,breath), s:i, col:s.col, a:edge, glow:0});
+        }
+      });
+      /* sparks: only between points on different strands, only while close */
+      for(var a=0;a<pts.length;a++){ for(var b=a+1;b<pts.length;b++){
+        var A=pts[a], B=pts[b]; if(A.s===B.s) continue;
+        var dx=A.x-B.x, dy=A.y-B.y; if(dx>NEAR||dx<-NEAR||dy>NEAR||dy<-NEAR) continue;
+        var d=Math.sqrt(dx*dx+dy*dy); if(d>=NEAR) continue;
+        var k2=1-d/NEAR, e=k2*k2*Math.min(A.a,B.a);
+        if(e>A.glow) A.glow=e; if(e>B.glow) B.glow=e;
+        ctx.strokeStyle='rgba(235,240,255,'+(0.55*e).toFixed(3)+')'; ctx.lineWidth=0.8;
+        ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke();
+      }}
+      var pulse=1.2+0.5*breath;
+      pts.forEach(function(P){
+        ctx.fillStyle='rgba('+P.col+','+(0.42*P.a).toFixed(3)+')';
+        ctx.beginPath(); ctx.arc(P.x,P.y,pulse,0,6.283); ctx.fill();
+        if(P.glow>0.02){
+          var r=pulse+7*P.glow, g2=ctx.createRadialGradient(P.x,P.y,0,P.x,P.y,r);
+          g2.addColorStop(0,'rgba(240,245,255,'+(0.9*P.glow).toFixed(3)+')'); g2.addColorStop(1,'rgba('+P.col+',0)');
+          ctx.fillStyle=g2; ctx.beginPath(); ctx.arc(P.x,P.y,r,0,6.283); ctx.fill();
+        }
+      });
+      ctx.globalCompositeOperation='source-over';
+    }
+    function loop(ms){
+      raf=0; if(!visible) return;
+      last=ms; draw(ms);
+      raf=requestAnimationFrame(loop);
+    }
+    function start(){ if(!raf && !reduce) raf=requestAnimationFrame(loop); }
+    size(); draw(reduce?2500:0);
+    window.addEventListener('resize',function(){ size(); draw(reduce?2500:performance.now()); });
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(e){ visible=e[0].isIntersecting; if(visible) start(); }).observe(cv);
+    }
+    document.addEventListener('visibilitychange',function(){ visible=!document.hidden; if(visible) start(); });
+    start();
+  });
+})();
+</script>
+</body>
+</html>
