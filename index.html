@@ -101,7 +101,8 @@ h2{font-size:clamp(32px,4.6vw,56px);line-height:1.06;letter-spacing:-0.03em;font
 .quote .slot{aspect-ratio:4/3}
 blockquote{margin:0}
 blockquote p{text-indent:-0.42em;font-size:clamp(21px,2.3vw,28px);line-height:1.3;letter-spacing:-0.022em;font-weight:600;margin:0;text-wrap:pretty}
-blockquote footer{background:none;border:0;padding:0;margin-top:24px;font-size:15px;color:var(--muted)}
+blockquote footer{background:none;border:0;padding:0;margin-top:24px;font-size:15px;color:var(--muted);display:flex;align-items:center;gap:14px}
+blockquote footer img{width:58px;height:58px;border-radius:50%;flex:none;object-fit:cover;filter:saturate(.85);box-shadow:0 0 0 1px var(--line)}
 blockquote footer b{color:var(--ink);font-weight:600}
 
 /* chapters */
@@ -294,11 +295,11 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
     <div class="wrap quotes">
       <blockquote>
         <p>“He possesses a unique ability to combine research, discovery, and incubation, seamlessly culminating in the development and deployment of cutting-edge technologies that push the boundaries of artistic expression.”</p>
-        <footer><b>A.R. Rahman</b>, Academy Award-winning composer, on LinkedIn</footer>
+        <footer><img src="rahman.jpg" width="192" height="192" loading="lazy" alt="A.R. Rahman"><span><b>A.R. Rahman</b>, Academy Award-winning composer, on LinkedIn</span></footer>
       </blockquote>
       <blockquote>
         <p>“Though I was CEO over a company with a lot of team members, Tony is someone that I got to know quite well. [...] I would also hire him again without hesitating if given the right opportunity.”</p>
-        <footer><b>Jeff Rosica</b>, former CEO, Avid Technology, on LinkedIn</footer>
+        <footer><img src="rosica.jpg" width="192" height="192" loading="lazy" alt="Jeff Rosica"><span><b>Jeff Rosica</b>, former CEO, Avid Technology, on LinkedIn</span></footer>
       </blockquote>
     </div>
   </section>
@@ -385,7 +386,7 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
         <div class="rec"><dt>Recognition</dt><dd>Sports Emmy nominee, 2019 <span>(shared). Outstanding Music Composition/Direction/Lyrics, Momentum Generation</span></dd></div>
         <div class="rec"><dt>Member</dt><dd>Recording Academy <span>(voting member)</span>, Audio Engineering Society, Motion Picture Sound Editors <span>(affiliate)</span></dd></div>
         <div class="rec"><dt>Education</dt><dd>MA, Post-Production Sound Design<br><span>Bournemouth University</span></dd></div>
-        <div class="rec"><dt>Recommended by</dt><dd>A.R. Rahman, Jeff Rosica, Nuno Fonseca and others <span>on</span> <a href="https://www.linkedin.com/in/music-tonyjoy/" target="_blank" rel="noopener">LinkedIn</a></dd></div>
+        <div class="rec"><dt>Recommended by</dt><dd>A.R. Rahman, Nuno Fonseca, Jeff Rosica and others <span>on</span> <a href="https://www.linkedin.com/in/music-tonyjoy/" target="_blank" rel="noopener">LinkedIn</a></dd></div>
       </dl>
     </div>
   </section>
