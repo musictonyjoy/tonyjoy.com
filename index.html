@@ -219,6 +219,48 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
 
   .nav ul{gap:6px 16px}
 }
+
+/* ---- Golden ratio scale: 17px base, steps of sqrt(phi); two steps = phi ----
+   13.4 · 17 · 21.6 · 27.5 · 35 · 44.5 · 56.6 · 72 · 91.6 */
+:root{--s-1:13.4px;--s0:17px;--s1:21.6px;--s2:27.5px;--s3:35px;--s4:44.5px;--s7:91.6px}
+body{line-height:1.618}
+.brand,.nav ul{font-size:var(--s-1)}
+h1{font-size:clamp(var(--s4),8vw,var(--s7))}
+.lede{font-size:var(--s1);line-height:1.5;margin-top:var(--s2)}
+.range{margin-top:var(--s3)}
+.kicker{font-size:var(--s0);letter-spacing:.1em}
+.range dt{font-size:var(--s-1);letter-spacing:.14em}
+.kicker{margin-bottom:var(--s0)}
+.range dd{font-size:var(--s0);color:var(--hero-muted)}
+.range dd span{opacity:.6}
+.stat b{font-size:clamp(var(--s3),3.6vw,var(--s4))}
+.stat span{font-size:var(--s-1)}
+h2{font-size:clamp(var(--s2),4.2vw,var(--s4));line-height:1.1;margin-bottom:var(--s0)}
+.sub{font-size:var(--s1);margin-bottom:var(--s4)}
+.story p{font-size:var(--s1);line-height:1.5}
+.story p.big{font-size:clamp(var(--s2),2.8vw,var(--s3))}
+.me figcaption{font-size:var(--s0)}
+blockquote p{font-size:clamp(var(--s1),2.3vw,var(--s2))}
+blockquote footer{font-size:var(--s-1)}
+.card h3{font-size:var(--s2)}
+.card p,.build p{font-size:var(--s0);line-height:1.618}
+.role,.receipt figcaption,.poster b,.poster i,.hint,.yr h3,.rec dt{font-size:var(--s-1)}
+.more,summary,.rec dd,.player strong{font-size:var(--s1)}
+.build time{font-size:var(--s0)}
+.build h3{font-size:var(--s1)}
+.yr li{font-size:var(--s-1)}
+.links{font-size:var(--s0)}
+.smile{font-size:clamp(var(--s2),3.6vw,var(--s4))}
+.note,.contact .mail{font-size:clamp(var(--s1),3vw,var(--s3))}
+body > footer{font-size:var(--s-1)}
+section{padding:91.6px 0}
+.hero .wrap{padding-top:116px;padding-bottom:91.6px}
+.contact .wrap{padding-top:116px;padding-bottom:116px}
+@media (max-width:900px){
+  section{padding:56.6px 0}
+  .hero .wrap{padding-top:72px;padding-bottom:56.6px}
+  .contact .wrap{padding-top:72px;padding-bottom:72px}
+}
 </style>
 </head>
 <body>
@@ -231,8 +273,8 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
         <li><a href="#work">Work</a></li>
         <li><a href="#story">About</a></li>
         <li><a href="#built">Built</a></li>
-        <li><a href="#screen">Films</a></li>
-        <li><a href="#listen">Listen</a></li>
+        <li><a href="#screen">Credits</a></li>
+        <li><a href="#listen">Music</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -368,7 +410,7 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
 
   <section id="screen">
     <div class="wrap">
-      <p class="kicker">Films</p>
+      <p class="kicker">Credits</p>
       <h2>Hollywood and Bollywood.</h2>
       <p class="sub">String sections, percussion and choirs. Vocalists in English, Hindi, Tamil and Brazilian Portuguese. Full film list on <a class="go" href="https://www.imdb.com/name/nm5068645/" target="_blank" rel="noopener">IMDb</a></p>
       <div class="posters" id="posters"><figure class="poster"><img src="poster-hundred-foot-journey.jpg" alt="The Hundred-Foot Journey poster" width="600" height="900" loading="lazy"><figcaption><b>The Hundred-Foot Journey</b><i>2014 · Additional Scoring</i></figcaption></figure><figure class="poster"><img src="poster-million-dollar-arm.jpg" alt="Million Dollar Arm poster" width="600" height="900" loading="lazy"><figcaption><b>Million Dollar Arm</b><i>2014 · Asst. Music Scoring Mixer + Engineer</i></figcaption></figure><figure class="poster"><img src="poster-pele.jpg" alt="Pelé poster" width="600" height="900" loading="lazy"><figcaption><b>Pelé</b><i>2016 · Music Engineer</i></figcaption></figure><figure class="poster"><img src="poster-people-like-us.jpg" alt="People Like Us poster" width="600" height="900" loading="lazy"><figcaption><b>People Like Us</b><i>2012 · Sound Engineer</i></figcaption></figure><figure class="poster"><img src="poster-momentum-generation.jpg" alt="Momentum Generation poster" width="600" height="900" loading="lazy"><figcaption><b>Momentum Generation</b><i>2018 · Music Scoring Mixer</i></figcaption></figure><figure class="poster"><img src="poster-rockstar.jpg" alt="Rockstar poster" width="600" height="900" loading="lazy"><figcaption><b>Rockstar</b><i>2011 · Sound Engineer</i></figcaption></figure><figure class="poster"><img src="poster-highway.jpg" alt="Highway poster" width="600" height="900" loading="lazy"><figcaption><b>Highway</b><i>2014 · Sound Engineer</i></figcaption></figure><figure class="poster"><img src="poster-jab-tak-hai-jaan.jpg" alt="Jab Tak Hai Jaan poster" width="600" height="900" loading="lazy"><figcaption><b>Jab Tak Hai Jaan</b><i>2012 · Sound Engineer</i></figcaption></figure><figure class="poster"><img src="poster-raanjhanaa.jpg" alt="Raanjhanaa / Ambikapathy poster" width="600" height="900" loading="lazy"><figcaption><b>Raanjhanaa / Ambikapathy</b><i>2013 · Sound Engineer, Hindi and Tamil releases</i></figcaption></figure><figure class="poster"><img src="poster-mohenjo-daro.jpg" alt="Mohenjo Daro poster" width="600" height="900" loading="lazy"><figcaption><b>Mohenjo Daro</b><i>2016 · Sound Engineer</i></figcaption></figure><figure class="poster"><img src="poster-love-sonia.jpg" alt="Love Sonia poster" width="600" height="900" loading="lazy"><figcaption><b>Love Sonia</b><i>2018 · Music Engineer</i></figcaption></figure><figure class="poster"><img src="poster-ok-jaanu.jpg" alt="OK Jaanu poster" width="600" height="900" loading="lazy"><figcaption><b>OK Jaanu</b><i>2017 · Mastering Engineer, “Sunn Bhavara”</i></figcaption></figure></div>
@@ -381,9 +423,8 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
 
   <section id="listen">
     <div class="wrap">
-      <p class="kicker">Listen</p>
-      <h2>Hear the work.</h2>
-      <p class="sub">One playlist. 250+ songs I worked on, across artists.</p>
+      <p class="kicker">Music</p>
+      <h2 style="margin-bottom:44.5px">250+ songs. One playlist.</h2>
       <div class="player live"><iframe title="Music Engineering Portfolio playlist on Apple Music" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" height="450" style="width:100%;overflow:hidden;border-radius:14px;border:0" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/playlist/music-engineering-portfolio-tony-joy/pl.u-Zmblxd1CZpMNgm?theme=dark"></iframe></div>
       <div class="links">
         <a href="https://music.apple.com/us/playlist/music-engineering-portfolio-tony-joy/pl.u-Zmblxd1CZpMNgm" target="_blank" rel="noopener">Apple Music</a>
