@@ -190,7 +190,11 @@ body > footer{background:var(--hero-bg);color:#58585c;border-top:1px solid var(-
 .cities{margin:0;line-height:2;letter-spacing:.02em;max-width:none}
 .cities b{color:var(--hero-ink);font-weight:600;white-space:nowrap;animation:glow 12s ease-in-out infinite}
 @keyframes glow{0%,100%{opacity:.6;text-shadow:none}50%{opacity:1;text-shadow:0 0 14px rgba(41,151,255,.55)}}
-@media (prefers-reduced-motion:reduce){.cities b{animation:none}}
+.lt{white-space:nowrap}
+.lt:not(:empty)::before{content:"\00b7";padding:0 .6em}
+.lt i{font-style:normal;animation:tick 2s steps(1) infinite}
+@keyframes tick{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.cities b,.lt i{animation:none}}
 body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 @media (max-width:900px){
@@ -395,7 +399,7 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
         <div class="rec"><dt>Recognition</dt><dd>Sports Emmy nominee, 2019 <span>(shared). Outstanding Music Composition/Direction/Lyrics, Momentum Generation</span></dd></div>
         <div class="rec"><dt>Member</dt><dd>Recording Academy <span>(voting member)</span>, Audio Engineering Society, Motion Picture Sound Editors <span>(affiliate)</span></dd></div>
         <div class="rec"><dt>Education</dt><dd>MA, Post-Production Sound Design<br><span>Bournemouth University</span></dd></div>
-        <div class="rec"><dt>Recommended by</dt><dd>A.R. Rahman, Nuno Fonseca, Jeff Rosica and others <span>on</span> <a class="go" href="https://www.linkedin.com/in/music-tonyjoy/" target="_blank" rel="noopener">LinkedIn</a></dd></div>
+        <div class="rec"><dt>Recommended by</dt><dd>A.R. Rahman, Nuno Fonseca, Jeff Rosica and others <span>on</span> <a class="go" href="https://www.linkedin.com/in/music-tonyjoy/details/recommendations/" target="_blank" rel="noopener">LinkedIn</a></dd></div>
       </dl>
     </div>
   </section>
@@ -416,7 +420,7 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
 </main>
 
 <footer>
-  <div class="wrap"><p class="cities"><b>Los Angeles</b><br>Work has taken me to Portugal &middot; South Africa &middot; United Kingdom &middot; Canada &middot; India &middot; United Arab Emirates &middot; Hong Kong &middot; Mauritius</p></div>
+  <div class="wrap"><p class="cities"><b>Los Angeles</b><span class="lt" id="latime" aria-label="Local time in Los Angeles"></span><br>Work has taken me to Portugal &middot; South Africa &middot; United Kingdom &middot; Canada &middot; India &middot; United Arab Emirates &middot; Hong Kong &middot; Mauritius</p></div>
 </footer>
 
 <script>
@@ -511,6 +515,13 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
     start();
   });
 })();
+</script>
+<script>
+(function(){var el=document.getElementById('latime');if(!el||!window.Intl)return;
+function t(){try{var p=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',hour:'numeric',minute:'2-digit',hour12:true}).formatToParts(new Date()),h='',m='',ap='';
+p.forEach(function(x){if(x.type==='hour')h=x.value;if(x.type==='minute')m=x.value;if(x.type==='dayPeriod')ap=x.value;});
+el.innerHTML=h+'<i>:</i>'+m+' '+ap+' PT';}catch(e){}}
+t();setInterval(t,15000);})();
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b88dac505eae49c09c10d4d643b8bdc0"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
