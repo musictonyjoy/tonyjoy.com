@@ -264,6 +264,17 @@ section{padding:91.6px 0}
 .cue{font-family:"Courier New",Courier,monospace;font-size:.8em;color:var(--hero-muted);opacity:.7;white-space:nowrap;letter-spacing:0}
 .kicker .dim{color:var(--muted)}
 .build .txt p + p{margin-top:12px}
+
+.range dd span{animation:dotglow 9s ease-in-out infinite;display:inline-block}
+.range dd span:nth-of-type(2){animation-delay:-2.2s}
+.range dd span:nth-of-type(3){animation-delay:-5.1s}
+.range dd span:nth-of-type(4){animation-delay:-7.3s}
+.range div + div dd span:nth-of-type(1){animation-delay:-3.6s}
+.range div + div dd span:nth-of-type(2){animation-delay:-6.4s}
+.range div + div dd span:nth-of-type(3){animation-delay:-0.9s}
+@keyframes dotglow{0%,100%{opacity:.55;color:var(--hero-muted);text-shadow:none}50%{opacity:1;color:#eaf2ff;text-shadow:0 0 6px rgba(240,245,255,.9),0 0 14px rgba(41,151,255,.55)}}
+.range dd span{transform:scale(1.25)}
+@media (prefers-reduced-motion:reduce){.range dd span{animation:none}}
 </style>
 </head>
 <body>
@@ -502,12 +513,13 @@ section{padding:91.6px 0}
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var COLORS = ['41,151,255','191,90,242','100,210,255','94,92,230','41,151,255','100,210,255'];
-  var LOG10 = Math.log(10), NEAR = 40, DOTS = 10;
+  var LOG10 = Math.log(10), NEAR = 40, DOTS = 10, NEAR2 = 10;
   function lg(x){ return Math.log(1+9*x)/LOG10; }                  /* 0..1, steep then flat */
   var PERIOD = 26;                                               /* seconds per breath */
   function breathAt(t){ var c=0.5-0.5*Math.cos(t*Math.PI*2/PERIOD); return Math.log(1+3*c)/Math.log(4); }  /* cosine keeps both ends at rest; the log leans it toward open */
   document.querySelectorAll('canvas.weave').forEach(function(cv){
     var ctx = cv.getContext('2d'), w=0, h=0, dpr=1, visible=true, raf=0, last=0;
+    var anchors = Array.prototype.slice.call((cv.parentNode||document).querySelectorAll('.range dd span'));
     var strands = COLORS.map(function(col,i){
       return {col:col, f1:0.8+i*0.23, f2:1.7+i*0.31, p1:i*1.3, p2:i*2.1, off:(i-2.5)/2.5, sp:0.012+i*0.002};
     });
@@ -556,6 +568,28 @@ section{padding:91.6px 0}
           ctx.fillStyle=g2; ctx.beginPath(); ctx.arc(P.x,P.y,r,0,6.283); ctx.fill();
         }
       });
+      /* skill dots: when a strand passes close to a dot between the hero skills, a spark bridges them */
+      if(anchors.length){
+        var cr=cv.getBoundingClientRect();
+        anchors.forEach(function(el){
+          var r=el.getBoundingClientRect(), ax=r.left+r.width/2-cr.left, ay=r.top+r.height/2-cr.top;
+          if(ax<0||ax>w||ay<0||ay>h) return;
+          var u=ax/w, edge=Math.sin(u*Math.PI), best=0, by=0, bc='';
+          strands.forEach(function(s){
+            var sy=yAt(s,u,t,breath), d=Math.abs(sy-ay);
+            if(d<NEAR2){ var k=1-d/NEAR2, e=k*k*edge; if(e>best){best=e; by=sy; bc=s.col;} }
+          });
+          if(best>0.02){
+            ctx.strokeStyle='rgba(235,240,255,'+(0.5*best).toFixed(3)+')'; ctx.lineWidth=0.8;
+            ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(ax,by); ctx.stroke();
+            [[ax,by,bc],[ax,ay,'41,151,255']].forEach(function(p){
+              var rr=2+9*best, g3=ctx.createRadialGradient(p[0],p[1],0,p[0],p[1],rr);
+              g3.addColorStop(0,'rgba(240,245,255,'+(0.85*best).toFixed(3)+')'); g3.addColorStop(1,'rgba('+p[2]+',0)');
+              ctx.fillStyle=g3; ctx.beginPath(); ctx.arc(p[0],p[1],rr,0,6.283); ctx.fill();
+            });
+          }
+        });
+      }
       ctx.globalCompositeOperation='source-over';
     }
     function loop(ms){
