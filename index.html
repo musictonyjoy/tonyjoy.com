@@ -65,7 +65,8 @@ h1{font-size:clamp(44px,7.8vw,100px);line-height:1.0;letter-spacing:-0.04em;font
 .range div{display:grid;grid-template-columns:7.5em 1fr;align-items:baseline;gap:0 16px}
 .range dt{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--hero-accent)}
 .range dd{margin:0;font-size:17px;line-height:1.45;color:var(--hero-ink)}
-.range dd span{color:var(--hero-muted);padding:0 .35em}
+.range dd .sk{white-space:nowrap}
+.range dd .d{color:var(--hero-muted);padding:0 .35em 0 .3em}
 @media (max-width:600px){.range div{grid-template-columns:1fr;gap:4px}.range dd{font-size:16px}}
 .cta{display:flex;flex-wrap:wrap;gap:12px 14px;margin-top:40px;align-items:center}
 .btn{display:inline-block;padding:11px 22px;border-radius:999px;font-size:17px;background:var(--hero-accent);color:#fff}
@@ -232,7 +233,7 @@ h1{font-size:clamp(var(--s4),8vw,var(--s7))}
 .range dt{font-size:var(--s-1);letter-spacing:.14em}
 .kicker{margin-bottom:var(--s0)}
 .range dd{font-size:var(--s0);color:var(--hero-muted)}
-.range dd span{opacity:.6}
+.range dd .d{opacity:.6}
 .stat b{font-size:clamp(var(--s3),3.6vw,var(--s4))}
 .stat span{font-size:var(--s-1)}
 h2{font-size:clamp(var(--s2),4.2vw,var(--s4));line-height:1.1;margin-bottom:var(--s0)}
@@ -265,16 +266,16 @@ section{padding:91.6px 0}
 .kicker .dim{color:var(--muted)}
 .build .txt p + p{margin-top:12px}
 
-.range dd span{animation:dotglow 9s ease-in-out infinite;display:inline-block}
-.range dd span:nth-of-type(2){animation-delay:-2.2s}
-.range dd span:nth-of-type(3){animation-delay:-5.1s}
-.range dd span:nth-of-type(4){animation-delay:-7.3s}
-.range div + div dd span:nth-of-type(1){animation-delay:-3.6s}
-.range div + div dd span:nth-of-type(2){animation-delay:-6.4s}
-.range div + div dd span:nth-of-type(3){animation-delay:-0.9s}
+.range dd .d{animation:dotglow 9s ease-in-out infinite;display:inline-block}
+.range div:first-child dd .d2{animation-delay:-2.2s}
+.range div:first-child dd .d3{animation-delay:-5.1s}
+.range div:first-child dd .d4{animation-delay:-7.3s}
+.range div + div dd .d1{animation-delay:-3.6s}
+.range div + div dd .d2{animation-delay:-6.4s}
+.range div + div dd .d3{animation-delay:-0.9s}
 @keyframes dotglow{0%,100%{opacity:.55;color:var(--hero-muted);text-shadow:none}50%{opacity:1;color:#eaf2ff;text-shadow:0 0 6px rgba(240,245,255,.9),0 0 14px rgba(41,151,255,.55)}}
-.range dd span{transform:scale(1.25)}
-@media (prefers-reduced-motion:reduce){.range dd span{animation:none}}
+.range dd .d{transform:scale(1.25)}
+@media (prefers-reduced-motion:reduce){.range dd .d{animation:none}}
 #screen .sub{max-width:46em}
 .contact h2{max-width:none}
 .contact h2 .l2,#screen .sub .l2{display:block}
@@ -307,8 +308,8 @@ section{padding:91.6px 0}
       <h1>The patch cable between machines and artists.</h1>
       <p class="lede">I hand new tools to the people who make films, music and games. Then I tell the teams who built them what is good, bad and ugly. <span class="cue">[cue ocarina]</span></p>
       <dl class="range">
-        <div><dt>Machines</dt><dd>Prompt&nbsp;engineering <span aria-hidden="true">·</span> Product&nbsp;strategy <span aria-hidden="true">·</span> Audio&nbsp;workstations&nbsp;and&nbsp;plugins <span aria-hidden="true">·</span> AI&nbsp;audio&nbsp;datasets <span aria-hidden="true">·</span> Spatial&nbsp;audio&nbsp;and&nbsp;Dolby&nbsp;Atmos</dd></div>
-        <div><dt>Artists</dt><dd>Feature&nbsp;films <span aria-hidden="true">·</span> Pop&nbsp;records <span aria-hidden="true">·</span> Voice&nbsp;casting&nbsp;and&nbsp;direction <span aria-hidden="true">·</span> Live&nbsp;concerts</dd></div>
+        <div><dt>Machines</dt><dd><span class="sk">Prompt&nbsp;engineering&nbsp;<span class="d d1" aria-hidden="true">·</span></span> <span class="sk">Product&nbsp;strategy&nbsp;<span class="d d2" aria-hidden="true">·</span></span> <span class="sk">Audio&nbsp;workstations&nbsp;and&nbsp;plugins&nbsp;<span class="d d3" aria-hidden="true">·</span></span> <span class="sk">AI&nbsp;audio&nbsp;datasets&nbsp;<span class="d d4" aria-hidden="true">·</span></span> Spatial&nbsp;audio&nbsp;and&nbsp;Dolby&nbsp;Atmos</dd></div>
+        <div><dt>Artists</dt><dd><span class="sk">Feature&nbsp;films&nbsp;<span class="d d1" aria-hidden="true">·</span></span> <span class="sk">Pop&nbsp;records&nbsp;<span class="d d2" aria-hidden="true">·</span></span> <span class="sk">Voice&nbsp;casting&nbsp;and&nbsp;direction&nbsp;<span class="d d3" aria-hidden="true">·</span></span> Live&nbsp;concerts</dd></div>
       </dl>
     </div>
     <div class="proof">
@@ -524,7 +525,7 @@ section{padding:91.6px 0}
   function breathAt(t){ var c=0.5-0.5*Math.cos(t*Math.PI*2/PERIOD); return Math.log(1+3*c)/Math.log(4); }  /* cosine keeps both ends at rest; the log leans it toward open */
   document.querySelectorAll('canvas.weave').forEach(function(cv){
     var ctx = cv.getContext('2d'), w=0, h=0, dpr=1, visible=true, raf=0, last=0;
-    var anchors = Array.prototype.slice.call((cv.parentNode||document).querySelectorAll('.range dd span'));
+    var anchors = Array.prototype.slice.call((cv.parentNode||document).querySelectorAll('.range dd .d'));
     var strands = COLORS.map(function(col,i){
       return {col:col, f1:0.8+i*0.23, f2:1.7+i*0.31, p1:i*1.3, p2:i*2.1, off:(i-2.5)/2.5, sp:0.012+i*0.002};
     });
