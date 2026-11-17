@@ -227,7 +227,7 @@ body{line-height:1.618}
 .brand,.nav ul{font-size:var(--s-1)}
 h1{font-size:clamp(var(--s4),8vw,var(--s7))}
 .lede{font-size:var(--s1);line-height:1.5;margin-top:var(--s2)}
-.range{margin-top:var(--s3)}
+.range{margin-top:var(--s4)}
 .kicker{font-size:var(--s0);letter-spacing:.1em}
 .range dt{font-size:var(--s-1);letter-spacing:.14em}
 .kicker{margin-bottom:var(--s0)}
@@ -261,6 +261,9 @@ section{padding:91.6px 0}
   .hero .wrap{padding-top:72px;padding-bottom:56.6px}
   .contact .wrap{padding-top:72px;padding-bottom:72px}
 }
+.cue{font-family:"Courier New",Courier,monospace;font-size:.8em;color:var(--hero-muted);opacity:.7;white-space:nowrap;letter-spacing:0}
+.kicker .dim{color:var(--muted)}
+.build p + p{margin-top:12px}
 </style>
 </head>
 <body>
@@ -286,7 +289,7 @@ section{padding:91.6px 0}
     <canvas class="weave" aria-hidden="true"></canvas>
     <div class="wrap">
       <h1>The patch cable between machines and artists.</h1>
-      <p class="lede">I put new technology into the hands of the people who make films, music and games. Then I take their feedback to the product and engineering teams who build the tools.</p>
+      <p class="lede">I hand new tools to the people who make films, music and games. Then I tell the teams who built them what is good, bad and ugly. <span class="cue">[cue ocarina]</span></p>
       <dl class="range">
         <div><dt>Machines</dt><dd>Prompt engineering <span aria-hidden="true">·</span> Product strategy <span aria-hidden="true">·</span> Audio workstations and plugins <span aria-hidden="true">·</span> AI audio datasets <span aria-hidden="true">·</span> Spatial audio and Dolby Atmos</dd></div>
         <div><dt>Artists</dt><dd>Feature films <span aria-hidden="true">·</span> Pop records <span aria-hidden="true">·</span> Voice casting and direction <span aria-hidden="true">·</span> Live concerts</dd></div>
@@ -297,7 +300,7 @@ section{padding:91.6px 0}
         <div class="stat"><b>25+</b><span>Film credits on IMDb, across Hollywood and Bollywood</span></div>
         <div class="stat"><b>250+</b><span>Songs I worked on, across artists</span></div>
         <div class="stat"><b>750+</b><span>Radio commercials produced, casting and directing the voiceover for each one</span></div>
-        <div class="stat"><b>1,000+</b><span>Ringtones for early mobile phones, some you could feel</span></div>
+        <div class="stat"><b>1,000+</b><span>Ringtones for early mobile phones, some with tactile feedback</span></div>
       </div>
     </div>
   </div>
@@ -310,24 +313,25 @@ section{padding:91.6px 0}
         <article class="card">
           <h3>Sound Particles</h3>
           <p class="role">VP, Business Development and Creative Services · 2022 to 2026</p>
-          <p>The global link between its engineering and product teams and the people who use its tools. I also built partnerships with global technology companies and leading resellers.</p>
-          <p>I helped shape both sides of the product line: B2C creator tools like Sound Particles 3 and Beat Panner, and a legally cleared B2B audio dataset for AI developers.</p>
+          <p>I was the global link between engineering and product teams, and the people who use the tools. I also built partnerships with artists, engineers, global technology companies and leading resellers.</p>
+          <p>I worked on both sides of the product line: B2C creator tools like Sound Particles 3 and Beat Panner, and a legally cleared B2B audio dataset for AI developers.</p>
         </article>
         <article class="card">
           <h3>Avid</h3>
           <p class="role">Pro Audio Solutions Specialist · 2018 to 2022</p>
-          <p>Built and ran Avid's first Immersive Audio Lab, where spatial music workflows for Pro Tools were developed and tested.</p>
+          <p>I built and ran Avid's first Immersive Audio Lab, where spatial music workflows for Pro Tools were developed and tested.</p>
           <p>I brokered the partnerships with Harman, Auralex and others that equipped it.</p>
           <figure class="receipt"><img src="protools-about.jpg" width="971" height="696" loading="lazy" alt="Pro Tools Ultimate About screen, version 2022.5.0, with the name Tony Joy highlighted in the credits"></figure>
         </article>
         <article class="card">
           <h3>A.R. Rahman</h3>
           <p class="role">Technology advisor since 2007</p>
-          <p>For eight of those years I engineered and ran his Los Angeles studio, where film scores for Hollywood and Bollywood were made.</p>
-          <p>I still filter which new tools reach his creative process, and invent the workflows around them.</p>
+          <p>For eight of those years I ran his Los Angeles studio, engineering songs and scoring sessions for Hollywood and Bollywood films.</p>
+          <p>To this day I filter which new tools reach his creative process, and invent the workflows around them.</p>
+          <p>I make complex technology invisible, so he can focus on what he does best - writing music.</p>
         </article>
       </div>
-      <p class="more">The full story is in my resume. <a class="go" href="#contact">Ask me for it</a></p>
+      <p class="more">That's the short version. <a class="go" href="#contact">Ask me for the long one</a></p>
     </div>
   </section>
 
@@ -337,7 +341,8 @@ section{padding:91.6px 0}
         <p class="kicker">The invisible engineer</p>
         <h2>I sat in the engineer's chair before I sat at the product table.</h2>
         <p>As a music engineer, my job was to make a room full of complex machines run so smoothly that artists forgot I was in it. Fires were out before anyone knew they had started.</p>
-        <p class="now">Now I sit at the product table too, shaping products for music and post-production. I use what I help make, push it until it breaks, then help the teams fix it. I'm as comfortable with product definition, prompt engineering and generative AI workflows as I am recording a Bösendorfer for a Hollywood film.</p>
+        <p class="now">Now I sit at the product table too, shaping products for music and post-production. I use what I help make, push it until it breaks, then help the teams fix it.</p>
+        <p class="now">I'm as comfortable with product definition, prompt engineering and generative AI workflows as I am recording a Bösendorfer for a Hollywood film.</p>
       </div>
       <figure class="me">
         <div class="vig photo"><img src="portrait.jpg" width="1120" height="1400" alt="Tony Joy, smiling, seated at a mixing desk in a studio"></div>
@@ -361,48 +366,55 @@ section{padding:91.6px 0}
 
   <section id="built">
     <div class="wrap">
-      <p class="kicker">Built</p>
+      <p class="kicker">Built. <span class="dim">Broke. Fixed.</span></p>
       <h2 style="margin-bottom:48px">Workflows artists and engineers didn't know they needed.</h2>
       <div class="builds">
         <article class="build">
           <time>Now</time>
           <h3>Quantum, in audio</h3>
-          <p>Exploring what quantum measurement could mean for audio production tools.</p>
+          <p>Exploring what quantum measurement could mean for audio and music production tools.</p>
         </article>
         <article class="build">
           <time>2026</time>
-          <h3>Hands on with generative AI</h3>
-          <p>I work with generative audio tools as they emerge: ElevenLabs, Suno, Moises, AceForge, Google Magenta. During my 2026 residency with Google's Flow Music Sessions, I published an audio plugin, built with AI coding agents and inspired by an Icelandic sea cave and its puffins.</p>
+          <h3>Generative AI for real-world productions</h3>
+          <p>I test generative audio tools as they come out, like ElevenLabs, Suno, Moises, AceForge and Google Magenta, and try to break them. Often successfully.</p>
+          <p>During my 2026 residency with Google's Flow Music Sessions, I published an audio plugin, built with AI coding agents and inspired by an Icelandic sea cave and its puffins.</p>
         </article>
         <article class="build">
           <time>2019</time>
           <h3>Avid's first Immersive Audio Lab</h3>
-          <p>A full Dolby Atmos room inside a corporate office was a hard sell. I designed and built it from an empty room. It went on to host AES and CAS community events, and about two years later headquarters built a second room modeled on it.</p>
+          <p>A full Dolby Atmos room inside a corporate office was a hard sell. I designed and built the lab from an empty room. It went on to host AES and CAS community events, and about two years later Avid headquarters built a second room modeled on it.</p>
+        </article>
+        <article class="build">
+          <time>2016</time>
+          <h3>Taking it on stage</h3>
+          <p>I designed and deployed the rig for A.R. Rahman's performance at TED in 2016. From 2017 to 2019 I ran front of house and every technical side of Vidya Vox's live shows, from the US and India to South Africa and Hong Kong.</p>
         </article>
         <article class="build">
           <time>2015</time>
           <h3>A spatial record, early <span class="tag">FAILED</span></h3>
-          <p>Co-produced at United Recording with Sankar Thiagasamudram, CEO of Audeze. An early attempt at immersive, reactive music production. It failed. I list it anyway.</p>
+          <p>Immersive choral recording. Co-produced at United Recording with Sankar Thiagasamudram, CEO of Audeze, when spatial audio was almost exclusively reserved for sound design. An early attempt at reactive music production. It failed. I list it anyway.</p>
         </article>
         <article class="build">
           <time>2014</time>
-          <h3>A voice you can play</h3>
-          <p>Wired Symbolic Sound's Kyma to a Haken Continuum so A.R. Rahman could play a recorded singer's voice as an instrument, bending pitch while the formants held, so it stayed human.</p>
+          <h3>A singer at your fingertips</h3>
+          <p>I built a patch in Symbolic Sound's Kyma so A.R. Rahman could play a recorded singer's voice as an instrument on a Haken Continuum, while picking the phrases from an iPad.</p>
+          <p>The formants held as the pitch moved, so the voice still sounded human. I worked closely with Kyma's designer, Carla Scaletti, and the Continuum's inventor, Lippold Haken, to design the patch.</p>
         </article>
         <article class="build">
           <time>2014</time>
-          <h3>Gestures into Pro Tools</h3>
-          <p>Connected Leap Motion to Pro Tools so natural hand gestures could drive audio production.</p>
+          <h3>Gestures in Pro Tools</h3>
+          <p>I Frankensteined Leap Motion into Pro Tools so each finger could control its own track, in banks of ten.</p>
         </article>
         <article class="build">
           <time>2010</time>
           <h3>Composing in surround</h3>
-          <p>Engineered A.R. Rahman's room so he could compose in 5.1, when 5.1 was mostly reserved for mixing. He triggered sampled instruments from an iPad, each touch placing the sound in the room.</p>
+          <p>I engineered A.R. Rahman's room so he could compose in 5.1, when 5.1 was mostly used for mixing. Alongside his regular stereo instruments, he could play sampled instruments in 5.1 from an iPad, through a Kyma patch I built. Where his fingertip touched the iPad decided where the sound sat in the room, left to right and front to back.</p>
         </article>
         <article class="build">
           <time>2004</time>
-          <h3>Ringtones you could feel</h3>
-          <p>Vibration patterns composed to follow the bass line, on phones from Sony Ericsson, Motorola, Kyocera and Nokia. Some shipped with DRM I implemented: thirty plays, then the ringtone locked until you bought it.</p>
+          <h3>Ringtones with tactile feedback</h3>
+          <p>My prehistoric take on haptics. I composed vibration patterns that followed the bass line, on phones from Sony Ericsson, Motorola, Kyocera and Nokia. Some shipped with DRM I implemented: thirty plays, then the ringtone you'd grown to love locked until you bought it.</p>
         </article>
       </div>
     </div>
@@ -438,7 +450,8 @@ section{padding:91.6px 0}
     <div class="wrap">
       <dl class="record">
         <div class="rec"><dt>Recognition</dt><dd>Sports Emmy nominee, 2019 <span>(shared). Outstanding Music Composition/Direction/Lyrics, Momentum Generation</span></dd></div>
-        <div class="rec"><dt>Member</dt><dd>Recording Academy <span>(voting member)</span>, Audio Engineering Society, Motion Picture Sound Editors <span>(affiliate)</span></dd></div>
+        <div class="rec"><dt>Residencies</dt><dd>Google Flow Music Sessions <span>(Cohort 2, 2026)</span></dd></div>
+        <div class="rec"><dt>Memberships</dt><dd>Recording Academy <span>(voting member)</span>, Audio Engineering Society, Motion Picture Sound Editors <span>(affiliate)</span></dd></div>
         <div class="rec"><dt>Education</dt><dd>MA, Post-Production Sound Design<br><span>Bournemouth University</span></dd></div>
         <div class="rec"><dt>Recommended by</dt><dd>A.R. Rahman, Nuno Fonseca, Jeff Rosica and others <span>on</span> <a class="go" href="https://www.linkedin.com/in/music-tonyjoy/details/recommendations/" target="_blank" rel="noopener">LinkedIn</a></dd></div>
       </dl>
