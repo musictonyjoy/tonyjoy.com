@@ -56,10 +56,17 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-of
 .stage > .wrap, .stage > .proof{position:relative}
 
 .hero .wrap{padding-top:128px;padding-bottom:96px}
-.eyebrow{font-size:13px;font-weight:600;letter-spacing:.16em;color:var(--hero-muted);margin:0 0 24px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--hero-muted);margin:0 0 24px;line-height:1.7}
+.eyebrow span{padding:0 .5em;opacity:.6}
 h1{font-size:clamp(44px,7.8vw,100px);line-height:1.0;letter-spacing:-0.04em;font-weight:700;margin:0;max-width:10em;text-wrap:balance}
 .tagline{font-size:clamp(22px,3vw,34px);line-height:1.2;letter-spacing:-0.02em;font-weight:600;color:var(--hero-ink);margin:30px 0 0}
 .lede{font-size:clamp(19px,2.1vw,24px);line-height:1.4;color:var(--hero-muted);max-width:32em;margin:30px 0 0}
+.range{margin:34px 0 0;display:grid;gap:10px;max-width:46em}
+.range div{display:grid;grid-template-columns:7.5em 1fr;align-items:baseline;gap:0 16px}
+.range dt{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--hero-accent)}
+.range dd{margin:0;font-size:17px;line-height:1.45;color:var(--hero-ink)}
+.range dd span{color:var(--hero-muted);padding:0 .35em}
+@media (max-width:600px){.range div{grid-template-columns:1fr;gap:4px}.range dd{font-size:16px}}
 .cta{display:flex;flex-wrap:wrap;gap:12px 14px;margin-top:40px;align-items:center}
 .btn{display:inline-block;padding:11px 22px;border-radius:999px;font-size:17px;background:var(--hero-accent);color:#fff}
 .btn:hover{text-decoration:none;filter:brightness(1.1)}
@@ -154,7 +161,7 @@ details[open] summary::after{content:"\2212"}
 .player.live{display:block;padding:14px;min-height:0}
 .player strong{display:block;color:var(--ink);font-size:21px;margin-bottom:6px}
 .links{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:28px;font-size:17px}
-.links a::after{content:" \203A"}
+.links a::after,a.go::after{content:"\00a0\203A"}
 
 /* record */
 .record{display:grid}
@@ -234,10 +241,10 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
     <div class="wrap">
       <h1>The patch cable between machines and artists.</h1>
       <p class="lede">I put new technology into the hands of the people who make films, music and games. Then I take their feedback to the product and engineering teams who build the tools.</p>
-      <div class="cta">
-        <a class="btn" href="#contact">Let's talk</a>
-        <a class="txt" href="#listen">Listen to the work</a>
-      </div>
+      <dl class="range">
+        <div><dt>Machines</dt><dd>Prompt engineering <span aria-hidden="true">·</span> Product strategy <span aria-hidden="true">·</span> Audio workstations and plugins <span aria-hidden="true">·</span> AI audio datasets <span aria-hidden="true">·</span> Spatial audio and Dolby Atmos</dd></div>
+        <div><dt>Artists</dt><dd>Feature films <span aria-hidden="true">·</span> Pop records <span aria-hidden="true">·</span> Voice casting and direction <span aria-hidden="true">·</span> Live concerts</dd></div>
+      </dl>
     </div>
     <div class="proof">
       <div class="wrap">
@@ -274,7 +281,7 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
           <p>I still filter which new tools reach his creative process, and invent the workflows around them.</p>
         </article>
       </div>
-      <p class="more">The full story is in my resume. <a href="#contact">Ask me for it.</a></p>
+      <p class="more">The full story is in my resume. <a class="go" href="#contact">Ask me for it</a></p>
     </div>
   </section>
 
@@ -359,7 +366,7 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
     <div class="wrap">
       <p class="kicker">Films</p>
       <h2>Hollywood and Bollywood.</h2>
-      <p class="sub">String sections, percussion and choirs. Vocalists in English, Hindi, Tamil and Brazilian Portuguese. Full film list on <a href="https://www.imdb.com/name/nm5068645/" target="_blank" rel="noopener">IMDb</a>.</p>
+      <p class="sub">String sections, percussion and choirs. Vocalists in English, Hindi, Tamil and Brazilian Portuguese. Full film list on <a class="go" href="https://www.imdb.com/name/nm5068645/" target="_blank" rel="noopener">IMDb</a></p>
       <div class="posters" id="posters"><figure class="poster"><img src="poster-hundred-foot-journey.jpg" alt="The Hundred-Foot Journey poster" width="600" height="900" loading="lazy"><figcaption><b>The Hundred-Foot Journey</b><i>2014 · Additional Scoring</i></figcaption></figure><figure class="poster"><img src="poster-million-dollar-arm.jpg" alt="Million Dollar Arm poster" width="600" height="900" loading="lazy"><figcaption><b>Million Dollar Arm</b><i>2014 · Asst. Music Scoring Mixer + Engineer</i></figcaption></figure><figure class="poster"><img src="poster-pele.jpg" alt="Pelé poster" width="600" height="900" loading="lazy"><figcaption><b>Pelé</b><i>2016 · Music Engineer</i></figcaption></figure><figure class="poster"><img src="poster-people-like-us.jpg" alt="People Like Us poster" width="600" height="900" loading="lazy"><figcaption><b>People Like Us</b><i>2012 · Sound Engineer</i></figcaption></figure><figure class="poster"><img src="poster-momentum-generation.jpg" alt="Momentum Generation poster" width="600" height="900" loading="lazy"><figcaption><b>Momentum Generation</b><i>2018 · Music Scoring Mixer</i></figcaption></figure><figure class="poster"><img src="poster-rockstar.jpg" alt="Rockstar poster" width="600" height="900" loading="lazy"><figcaption><b>Rockstar</b><i>2011 · Sound Engineer</i></figcaption></figure><figure class="poster"><img src="poster-highway.jpg" alt="Highway poster" width="600" height="900" loading="lazy"><figcaption><b>Highway</b><i>2014 · Sound Engineer</i></figcaption></figure><figure class="poster"><img src="poster-jab-tak-hai-jaan.jpg" alt="Jab Tak Hai Jaan poster" width="600" height="900" loading="lazy"><figcaption><b>Jab Tak Hai Jaan</b><i>2012 · Sound Engineer</i></figcaption></figure><figure class="poster"><img src="poster-raanjhanaa.jpg" alt="Raanjhanaa / Ambikapathy poster" width="600" height="900" loading="lazy"><figcaption><b>Raanjhanaa / Ambikapathy</b><i>2013 · Sound Engineer, Hindi and Tamil releases</i></figcaption></figure><figure class="poster"><img src="poster-mohenjo-daro.jpg" alt="Mohenjo Daro poster" width="600" height="900" loading="lazy"><figcaption><b>Mohenjo Daro</b><i>2016 · Sound Engineer</i></figcaption></figure><figure class="poster"><img src="poster-love-sonia.jpg" alt="Love Sonia poster" width="600" height="900" loading="lazy"><figcaption><b>Love Sonia</b><i>2018 · Music Engineer</i></figcaption></figure><figure class="poster"><img src="poster-ok-jaanu.jpg" alt="OK Jaanu poster" width="600" height="900" loading="lazy"><figcaption><b>OK Jaanu</b><i>2017 · Mastering Engineer, “Sunn Bhavara”</i></figcaption></figure></div>
       <details>
         <summary>All credits</summary>
@@ -388,7 +395,7 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
         <div class="rec"><dt>Recognition</dt><dd>Sports Emmy nominee, 2019 <span>(shared). Outstanding Music Composition/Direction/Lyrics, Momentum Generation</span></dd></div>
         <div class="rec"><dt>Member</dt><dd>Recording Academy <span>(voting member)</span>, Audio Engineering Society, Motion Picture Sound Editors <span>(affiliate)</span></dd></div>
         <div class="rec"><dt>Education</dt><dd>MA, Post-Production Sound Design<br><span>Bournemouth University</span></dd></div>
-        <div class="rec"><dt>Recommended by</dt><dd>A.R. Rahman, Nuno Fonseca, Jeff Rosica and others <span>on</span> <a href="https://www.linkedin.com/in/music-tonyjoy/" target="_blank" rel="noopener">LinkedIn</a></dd></div>
+        <div class="rec"><dt>Recommended by</dt><dd>A.R. Rahman, Nuno Fonseca, Jeff Rosica and others <span>on</span> <a class="go" href="https://www.linkedin.com/in/music-tonyjoy/" target="_blank" rel="noopener">LinkedIn</a></dd></div>
       </dl>
     </div>
   </section>
