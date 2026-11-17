@@ -94,7 +94,9 @@ h2{font-size:clamp(32px,4.6vw,56px);line-height:1.06;letter-spacing:-0.03em;font
 .me figcaption{margin-top:16px;font-size:16px;line-height:1.45;color:var(--ink);font-style:italic;font-weight:500;max-width:26em}
 
 /* quotes */
-.quotes{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:stretch}
+.quotes blockquote{display:flex;flex-direction:column}
+.quotes blockquote footer{margin-top:auto;padding-top:24px}
 .quote{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:56px;align-items:center}
 .quote.flip{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
 .quote.flip .slot{order:2}
