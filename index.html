@@ -42,6 +42,8 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-of
 .wrap{max-width:1080px;margin:0 auto;padding-left:24px;padding-right:24px}
 
 /* nav */
+.drips{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1}
+main,body > footer{position:relative;z-index:1}
 .nav{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hero-line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:8px 20px;min-height:48px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
 .brand{font-size:13px;font-weight:600;letter-spacing:.14em;color:var(--hero-ink)}
@@ -51,7 +53,7 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-of
 .nav ul a:hover{color:var(--hero-ink);text-decoration:none}
 
 /* dark stages with weaving strands */
-.stage{position:relative;background:var(--hero-bg);color:var(--hero-ink);overflow:hidden}
+.stage{position:relative;background:transparent;color:var(--hero-ink);overflow:hidden}
 .stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
 .stage > .wrap, .stage > .proof{position:relative}
 
@@ -266,6 +268,8 @@ section{padding:91.6px 0}
 .kicker .dim{color:var(--muted)}
 .build .txt p + p{margin-top:12px}
 
+/* a soft dark halo hugging the letters only, so the lede and skills stay legible over the weave without hiding it */
+.lede,.range dt,.range dd{text-shadow:0 0 1px rgba(0,0,0,.9),0 0 5px rgba(0,0,0,.8),0 0 13px rgba(0,0,0,.55)}
 .range dd .d{animation:dotglow 9s ease-in-out infinite;display:inline-block}
 .range div:first-child dd .d2{animation-delay:-2.2s}
 .range div:first-child dd .d3{animation-delay:-5.1s}
@@ -317,7 +321,7 @@ details.build[open] .txt{animation:fadein .5s ease}
     <canvas class="weave" aria-hidden="true"></canvas>
     <div class="wrap">
       <h1>The patch cable between artists and machines.</h1>
-      <p class="lede">I hand new tools to the people who make films, music and games. Then I tell the teams who built them what is good, bad and ugly. <span class="cue">[cue ocarina]</span></p>
+      <p class="lede">I introduce and weave new tools into the workflows of professionals who make films, music and games. Then I tell the teams who built them what is good, bad and ugly. <span class="cue">[cue ocarina]</span></p>
       <dl class="range">
         <div><dt>Artists</dt><dd><span class="sk">Feature&nbsp;films&nbsp;<span class="d d1" aria-hidden="true">·</span></span> <span class="sk">Pop&nbsp;records&nbsp;<span class="d d2" aria-hidden="true">·</span></span> <span class="sk">Voice&nbsp;casting&nbsp;and&nbsp;direction&nbsp;<span class="d d3" aria-hidden="true">·</span></span> Live&nbsp;concerts</dd></div>
         <div><dt>Machines</dt><dd><span class="sk">Prompt&nbsp;engineering&nbsp;<span class="d d1" aria-hidden="true">·</span></span> <span class="sk">Product&nbsp;strategy&nbsp;<span class="d d2" aria-hidden="true">·</span></span> <span class="sk">Audio&nbsp;workstations&nbsp;and&nbsp;plugins&nbsp;<span class="d d3" aria-hidden="true">·</span></span> <span class="sk">AI&nbsp;audio&nbsp;datasets&nbsp;<span class="d d4" aria-hidden="true">·</span></span> Spatial&nbsp;audio&nbsp;and&nbsp;Dolby&nbsp;Atmos</dd></div>
@@ -554,12 +558,14 @@ details.build[open] .txt{animation:fadein .5s ease}
           pts.push({x:u2*w, y:yAt(s,u2,t,breath), s:i, col:s.col, a:edge, glow:0});
         }
       });
+      var wr=cv.getBoundingClientRect(); cv.__pts=pts; cv.__ox=wr.left+window.scrollX; cv.__oy=wr.top+window.scrollY; cv.__w=w; cv.__h=h; cv.__ts=performance.now();
       /* sparks: only between points on different strands, only while close */
       for(var a=0;a<pts.length;a++){ for(var b=a+1;b<pts.length;b++){
         var A=pts[a], B=pts[b]; if(A.s===B.s) continue;
         var dx=A.x-B.x, dy=A.y-B.y; if(dx>NEAR||dx<-NEAR||dy>NEAR||dy<-NEAR) continue;
         var d=Math.sqrt(dx*dx+dy*dy); if(d>=NEAR) continue;
         var k2=1-d/NEAR, e=k2*k2*Math.min(A.a,B.a);
+        if(e>0.5 && window.__tjDrip) window.__tjDrip(cv.__ox+(A.x+B.x)/2, cv.__oy+(A.y+B.y)/2, A.col);
         if(e>A.glow) A.glow=e; if(e>B.glow) B.glow=e;
         ctx.strokeStyle='rgba(235,240,255,'+(0.55*e).toFixed(3)+')'; ctx.lineWidth=0.8;
         ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke();
@@ -585,6 +591,7 @@ details.build[open] .txt{animation:fadein .5s ease}
             var sy=yAt(s,u,t,breath), d=Math.abs(sy-ay);
             if(d<NEAR2){ var k=1-d/NEAR2, e=Math.pow(k,1.3)*edge; if(e>best){best=e; by=sy; bc=s.col;} }
           });
+          if(best>0.55 && window.__tjDrip) window.__tjDrip(cr.left+ax+window.scrollX, cr.top+by+window.scrollY, bc);
           if(best>0.02){
             var lg3=ctx.createLinearGradient(ax,ay,ax,by); lg3.addColorStop(0,'rgba(160,205,255,'+(0.525*best).toFixed(3)+')'); lg3.addColorStop(1,'rgba(240,245,255,'+(0.595*best).toFixed(3)+')');
             ctx.strokeStyle=lg3; ctx.lineWidth=1;
@@ -633,6 +640,244 @@ t();setInterval(t,15000);})();
       if(Math.abs(dd)>1) window.scrollBy({top:dd, left:0, behavior:'instant'});
     });
   });
+})();
+/* Drips: now and then a spark breaks off the weave and sinks, as if through a thick liquid, carried by soft winds.
+   They live behind everything: text, pictures and boxes always sit in front.
+   Every constant is a golden-ratio or Fibonacci value. Drops nearer the viewer are larger, brighter
+   and faster. Every box and blue title is solid to every drop.
+   On a frame a drop flattens (logarithmically), flows to the nearer edge, wraps the rounded corner,
+   runs down the side, gathers at the bottom and lets go. While near a weave it sparks to the strands.
+   A handful at most, never brighter than the weave's own points; runs only while something is falling. */
+(function(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var PHI=1.6180340, IP=0.6180340, IP2=0.3819660, LN10=Math.log(10);
+  function lg(u){ u=u<0?0:u>1?1:u; return Math.log(1+9*u)/LN10; }              /* same log curve as the weave */
+  var cv=document.createElement('canvas'); cv.className='drips'; cv.setAttribute('aria-hidden','true');
+  document.body.appendChild(cv);
+  var ctx=cv.getContext('2d'), W=0, H=0, dpr=1;
+  function size(){ dpr=Math.min(window.devicePixelRatio||1,2); W=document.documentElement.clientWidth; H=document.documentElement.clientHeight; cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); }
+  var MAX = window.innerWidth<700 ? 5 : 8;
+  var COLS=['41,151,255','191,90,242','100,210,255','94,92,230'];
+  var weaves=Array.prototype.slice.call(document.querySelectorAll('canvas.weave'));
+  var specs=[];
+  function add(el,kind){ if(!el) return; var rc=parseFloat(getComputedStyle(el).borderTopRightRadius)||0; specs.push({el:el,kind:kind,rc:kind==='text'?3:Math.max(3,rc)}); }
+  document.querySelectorAll('.bento .card').forEach(function(el){ add(el,'frame'); });
+  add(document.querySelector('.me .photo'),'frame');
+  document.querySelectorAll('.kicker').forEach(function(k){ add(k,'text'); });   /* every blue section title */
+  add(document.querySelector('details.build'),'line');
+  document.querySelectorAll('.poster img').forEach(function(el){ add(el,'frame'); });
+  add(document.querySelector('.player'),'frame');
+  add(document.querySelector('.record .rec'),'line');
+  add(document.querySelector('body > footer'),'ground');
+  var S=[], measured=0;
+  function measure(){
+    var sx=window.scrollX, sy=window.scrollY;
+    S=specs.map(function(o){
+      var r;
+      if(o.kind==='text'){ var rg=document.createRange(); rg.selectNodeContents(o.el); r=rg.getBoundingClientRect(); }
+      else r=o.el.getBoundingClientRect();
+      return {k:o.kind, t:r.top+sy, b:r.bottom+sy, l:r.left+sx, r:r.right+sx, w:r.width, rc:Math.min(o.rc, r.width/2, r.height/2)};
+    });
+    measured=performance.now();
+  }
+  var P=[], R=[], raf=0, last=0, nextAt=0;
+  function start(){ if(!raf && !document.hidden){ last=0; raf=requestAnimationFrame(loop); } }
+  function spawn(x,y,col){
+    var now=performance.now();
+    if(P.length>=MAX || now<nextAt) return;
+    nextAt=now+(3+5*Math.random())*1000;                          /* 3 to 8 seconds apart */
+    var z=Math.pow(Math.random(),IP);                              /* depth: 0 far, 1 near; leans near */
+    var sz=IP+Math.random();                                       /* size, 0.618 to 1.618: mass grows with volume, drag with radius */
+    P.push({x:x,y:y,vx:0,vy:2,z:z,sz:sz,r:(0.9+0.8*z)*sz,am:0.21+0.21*z,
+      vT:Math.max(5,(8+13*z)*sz*sz),                               /* terminal speed grows with size squared (Stokes): big drops sink faster */
+      k:PHI/(sz*sz),                                               /* and respond more slowly: more inertia, less pushed by the wind */
+      ph:Math.random()*6.283,
+      col:col||COLS[(Math.random()*4)|0],m:'free',s:-1,dir:0,tm:0,a:0,life:1,
+      sx:1,sy:1,usx:0,usy:0,th:0,sp:0,hold:0,off:0,ox:0});
+    if(!S.length) measure();
+    start();
+  }
+  window.__tjDrip=function(x,y,col){ spawn(x,y,col); };
+  var hero=document.querySelector('.hero');
+  setInterval(function(){                                          /* off the hero, one drifts in from above now and then */
+    if(document.hidden || P.length>=MAX/2 || Math.random()<IP) return;
+    var hr=hero?hero.getBoundingClientRect():null;
+    if(hr && hr.bottom>0) return;
+    var w=document.querySelector('main .wrap'), wr=w?w.getBoundingClientRect():{left:0,width:W};
+    spawn(window.scrollX+wr.left+Math.random()*wr.width, window.scrollY-13);
+  },5000);
+  function ripple(x,y,z,ground){ if(R.length<8) R.push({x:x,y:y,tm:0,a:ground?0.21+0.13*z:0.05*z,R:ground?21+13*z:8,T:ground?2.618:1.618}); }
+  function topAt(q,x){                                             /* the top edge, following the rounded corners */
+    if(q.k!=='frame' && q.k!=='text') return q.t;
+    var dx = x>q.r-q.rc ? x-(q.r-q.rc) : x<q.l+q.rc ? (q.l+q.rc)-x : 0;
+    return dx>0 ? q.t+q.rc-Math.sqrt(Math.max(0,q.rc*q.rc-dx*dx)) : q.t;
+  }
+  /* soft winds through the space: two slow, drifting swirls, breathing in strength */
+  function windX(x,y,t){ var gust=IP+IP2*Math.sin(t*0.089+1.3); return gust*(8*Math.sin(y*0.0055+t*0.21+1.3)+5*Math.sin(x*0.004-y*0.0034+t*0.34)); }
+  function windY(x,y,t){ return 3*Math.sin(x*0.0055-t*0.13)+2*Math.sin((x+y)*0.0021+t*0.21); }
+  function freefall(p,dt,t){
+    var k=p.k;                                                     /* viscosity: the drop is carried by the fluid around it; light drops settle fast, heavy ones slowly */
+    p.vy+=(p.vT+windY(p.x,p.y,t)-p.vy)*k*dt;
+    p.vx+=(windX(p.x,p.y,t)*(IP+IP2*p.z)-p.vx)*k*dt;
+    var py=p.y; p.x+=p.vx*dt; p.y+=p.vy*dt;
+    for(var i=0;i<S.length;i++){ var q=S[i];
+      if(p.x<q.l || p.x>q.r) continue;
+      if((q.k==='frame'||q.k==='text') && p.y>topAt(q,p.x)+0.5 && p.y<q.b && py>topAt(q,p.x)){   /* blown into the side of a box: it meets the wall and runs down it */
+        p.dir = (p.x-q.l < q.r-p.x) ? -1 : 1; p.x = p.dir<0 ? q.l : q.r; p.s=i; p.tm=0; p.m='side'; p.vy=Math.max(2,p.vy*IP); p.vx=0;
+        return;
+      }
+      var yt=topAt(q,p.x);
+      if(py<=yt && p.y>=yt){
+        p.y=yt; p.s=i; p.tm=0; ripple(p.x,yt,p.z,q.k==='ground');
+        if(q.k==='ground'){ p.m='ground'; p.vy=0; p.vx*=IP2; }
+        else if(q.k==='line'){ p.m='line'; p.vx=0; p.vy=0; p.hold=PHI+Math.random()*IP; }
+        else {                                                     /* the impact spreads into sideways momentum */
+          var mid=(q.l+q.r)/2; p.dir = Math.random()<IP ? (p.x<mid?-1:1) : (p.x<mid?1:-1);
+          if(p.x>q.r-q.rc) p.dir=1; else if(p.x<q.l+q.rc) p.dir=-1;   /* on a corner it can only run off that way */
+          p.vx = (yt>q.t ? p.dir : (Math.random()<0.5?-1:1))*p.vy*IP2; p.vy=0; p.m='top';
+        }
+        return;
+      }
+    }
+  }
+  function step(p,dt,t){
+    p.tm+=dt; p.a=Math.min(1,p.a+dt*IP);
+    var q=p.s>=0?S[p.s]:null, tsx=1, tsy=1, f;
+    if(q && !q.w){ p.m='free'; p.s=-1; q=null; }
+    if(p.m==='free'){
+      freefall(p,dt,t);
+      var e=Math.min(1,Math.abs(p.vy)/p.vT)*IP2; tsy=1+e; tsx=1-e*IP;
+    } else if(p.m==='top'){
+      var ks=PHI*PHI/p.sz, vs=(8+13*p.z)*p.sz, ramp=lg(p.tm/PHI);               /* flow eases in, never starts square */
+      p.vx+=(p.dir*vs*ks*ramp-ks*p.vx)*dt; p.x+=p.vx*dt; p.y=topAt(q,p.x);
+      f=lg(p.tm/IP); tsy=1-IP2*f; tsx=1+IP*f;
+      var cx = p.vx>0 ? q.r-q.rc : q.l+q.rc;
+      if((p.vx>0 && p.x>=cx) || (p.vx<0 && p.x<=cx)){ p.dir=p.vx>0?1:-1; p.m='arc'; p.th=Math.asin(Math.min(1,Math.abs(p.x-cx)/q.rc)); p.sp=Math.abs(p.vx); p.tm=0;
+        var ry=p.y+p.off, rx=p.x+p.ox; p.y=q.t+q.rc-(q.rc+p.r)*Math.cos(p.th); p.x=cx+p.dir*(q.rc+p.r)*Math.sin(p.th); p.off=ry-p.y; p.ox=rx-p.x; }
+      if(p.x<q.l-1 || p.x>q.r+1){ p.m='free'; p.s=-1; }
+    } else if(p.m==='arc'){                                        /* wrapping the rounded corner; gravity takes over as it turns */
+      var kw=PHI/p.sz, vw=(13+8*p.z)*p.sz;
+      p.sp+=(vw*kw*Math.sin(p.th)+2-kw*IP2*p.sp)*dt;
+      p.th=Math.min(Math.PI/2, p.th+p.sp/q.rc*dt);
+      var ccx = p.dir>0 ? q.r-q.rc : q.l+q.rc, ccy=q.t+q.rc;
+      var Rr=q.rc+p.r; p.x=ccx+p.dir*Rr*Math.sin(p.th); p.y=ccy-Rr*Math.cos(p.th);   /* rides just outside the curve */
+      tsx=1-IP2*IP2; tsy=1+IP2*IP2;
+      if(p.th>=Math.PI/2){ p.m='side'; p.vy=p.sp; p.tm=0; }
+    } else if(p.m==='side'){                                       /* running down the side, held back by the wall */
+      var kw2=PHI/p.sz, vw2=(13+8*p.z)*p.sz;
+      p.vy+=(vw2*kw2-kw2*p.vy)*dt; p.y+=p.vy*dt; p.x=(p.dir>0?q.r:q.l)+p.dir*p.r;
+      tsx=1-IP2*IP2; tsy=1+IP2*IP;
+      if(p.y>=q.b-q.rc){ p.m='hang'; p.tm=0; p.hold=PHI+Math.random(); }
+    } else if(p.m==='hang'){                                       /* gathering at the bottom corner, then letting go */
+      var g=lg(p.tm/p.hold); tsy=1+IP*g; tsx=1-IP2*g;
+      p.y+=(q.b-p.y)*Math.min(1,dt*PHI); p.x+=(((p.dir>0?q.r:q.l)-p.dir*q.rc*IP2*IP2)-p.x)*Math.min(1,dt*PHI);
+      if(p.tm>=p.hold){ p.m='free'; p.s=-1; p.vy=3; p.vx=p.dir*5; p.y=Math.max(p.y,q.b+0.5); p.tm=0; }
+    } else if(p.m==='line'){                                       /* beads on the line, then slips through */
+      f=lg(p.tm/IP); tsy=1-IP2*f; tsx=1+IP*f; p.y=q.t;
+      if(p.tm>=p.hold){ var u=lg((p.tm-p.hold)/IP2); tsy=1+IP2*u; tsx=1-IP2*IP*u;
+        if(p.tm>=p.hold+IP2){ p.m='free'; p.s=-1; p.y=q.t+0.5; p.vy=3; p.tm=0; } }
+    } else if(p.m==='ground'){                                     /* lands on the footer line, flattens, fades */
+      p.x+=p.vx*dt; p.vx*=1-Math.min(1,PHI*dt); p.y=q.t;
+      f=lg(p.tm/IP); tsy=1-IP*f; tsx=1+PHI*f;
+      p.life=1-lg(p.tm/8);
+    }
+    /* the drop's shape follows its target on a soft, slightly bouncy spring: a liquid wobble */
+    var K=89, D=2*IP2*Math.sqrt(K);
+    p.usx+=((tsx-p.sx)*K-D*p.usx)*dt; p.sx+=p.usx*dt;
+    p.usy+=((tsy-p.sy)*K-D*p.usy)*dt; p.sy+=p.usy*dt;
+    var to=(p.m==='top'||p.m==='line'||p.m==='ground')? -p.r*p.sy : p.m==='hang'? p.r*p.sy : 0;
+    p.off+=(to-p.off)*Math.min(1,dt*13);                          /* the drop sits on, or hangs from, the edge */
+    p.ox+=(0-p.ox)*Math.min(1,dt*13);
+    return p.life>0.01 && p.y<document.documentElement.scrollHeight+34;
+  }
+  function draw(t){
+    ctx.clearRect(0,0,W,H);
+    var sx=window.scrollX, sy=window.scrollY, now=performance.now();
+    ctx.globalCompositeOperation='lighter';
+    R.forEach(function(r){
+      var x=r.x-sx, y=r.y-sy; if(y<-34||y>H+34) return;
+      var u=lg(r.tm/r.T), rr=1+r.R*u, al=r.a*(1-u);
+      ctx.strokeStyle='rgba(160,190,255,'+al.toFixed(3)+')'; ctx.lineWidth=0.75;
+      ctx.beginPath(); ctx.ellipse(x,y,rr,rr*IP2*IP,0,0,6.283); ctx.stroke();
+    });
+    /* sparks to nearby weave points */
+    var NEAR=34*PHI;
+    weaves.forEach(function(w){
+      if(!w.__pts || now-w.__ts>200) return;
+      P.forEach(function(p){
+        if(p.x<w.__ox-NEAR || p.x>w.__ox+w.__w+NEAR || p.y<w.__oy-NEAR || p.y>w.__oy+w.__h+NEAR) return;
+        var al=p.a*p.life;
+        for(var i=0;i<w.__pts.length;i++){ var A=w.__pts[i];
+          var dx=w.__ox+A.x-p.x, dy=w.__oy+A.y-p.y; if(dx>NEAR||dx<-NEAR||dy>NEAR||dy<-NEAR) continue;
+          var d=Math.sqrt(dx*dx+dy*dy); if(d>=NEAR) continue;
+          var k=1-d/NEAR, e=k*k*Math.min(A.a,1)*al;
+          ctx.strokeStyle='rgba(235,240,255,'+(0.34*e).toFixed(3)+')'; ctx.lineWidth=0.7;
+          ctx.beginPath(); ctx.moveTo(p.x-sx,p.y-sy); ctx.lineTo(w.__ox+A.x-sx,w.__oy+A.y-sy); ctx.stroke();
+        }
+      });
+    });
+    for(var a=0;a<P.length;a++){ for(var b=a+1;b<P.length;b++){        /* drops that pass close spark to each other */
+      var A=P[a], B=P[b], dx=A.x-B.x, dy=A.y-B.y; if(dx>NEAR||dx<-NEAR||dy>NEAR||dy<-NEAR) continue;
+      var d=Math.sqrt(dx*dx+dy*dy); if(d>=NEAR) continue;
+      var k=1-d/NEAR, e=k*k*Math.min(A.a*A.life*A.am,B.a*B.life*B.am)/0.42;
+      ctx.strokeStyle='rgba(235,240,255,'+(0.34*e).toFixed(3)+')'; ctx.lineWidth=0.7;
+      ctx.beginPath(); ctx.moveTo(A.x+A.ox-sx,A.y+A.off-sy); ctx.lineTo(B.x+B.ox-sx,B.y+B.off-sy); ctx.stroke();
+    }}
+    /* the blue titles spark to drops passing near them, like the blue dots in the hero */
+    for(var si=0;si<S.length;si++){ var qq=S[si]; if(qq.k!=='text') continue;
+      P.forEach(function(p){ if(p.s===si) return;
+        var px=p.x+p.ox, py2=p.y+p.off, nx=Math.max(qq.l,Math.min(qq.r,px)), ny=Math.max(qq.t,Math.min(qq.b,py2));
+        var dx2=px-nx, dy2=py2-ny; if(dx2>NEAR||dx2<-NEAR||dy2>NEAR||dy2<-NEAR) return;
+        var d2=Math.sqrt(dx2*dx2+dy2*dy2); if(d2>=NEAR||d2<1) return;
+        var k3=1-d2/NEAR, e3=k3*k3*p.a*p.life*p.am/0.42;
+        ctx.strokeStyle='rgba(160,200,255,'+(0.3*e3).toFixed(3)+')'; ctx.lineWidth=0.7;
+        ctx.beginPath(); ctx.moveTo(px-sx,py2-sy); ctx.lineTo(nx-sx,ny-sy); ctx.stroke();
+      });
+    }
+    /* drops passing near each other spark too */
+    for(var a=0;a<P.length;a++){ for(var b=a+1;b<P.length;b++){
+      var A2=P[a], B2=P[b], ddx=(A2.x+A2.ox)-(B2.x+B2.ox), ddy=(A2.y+A2.off)-(B2.y+B2.off);
+      if(ddx>NEAR||ddx<-NEAR||ddy>NEAR||ddy<-NEAR) continue;
+      var dd=Math.sqrt(ddx*ddx+ddy*ddy); if(dd>=NEAR) continue;
+      var kk=1-dd/NEAR, ee=kk*kk*Math.min(A2.a*A2.life*A2.am,B2.a*B2.life*B2.am)/0.42;
+      ctx.strokeStyle='rgba(235,240,255,'+(0.34*ee).toFixed(3)+')'; ctx.lineWidth=0.7;
+      ctx.beginPath(); ctx.moveTo(A2.x+A2.ox-sx,A2.y+A2.off-sy); ctx.lineTo(B2.x+B2.ox-sx,B2.y+B2.off-sy); ctx.stroke();
+    }}
+    P.forEach(function(p){
+      var cx=p.x-sx+p.ox, cy=p.y-sy+p.off;
+      if(cy<-34||cy>H+34) return;
+      if(cy<-34||cy>H+34) return;
+      var al=p.a*p.life*p.am*(0.82+0.18*Math.sin(t*PHI+p.ph));    /* a slow shimmer; never above the weave's points */
+      if(p.m==='free' && p.vy>3){
+        var len=Math.min(13,p.vy*IP2), g=ctx.createLinearGradient(cx,cy-len,cx,cy);
+        g.addColorStop(0,'rgba('+p.col+',0)'); g.addColorStop(1,'rgba('+p.col+','+(al*IP).toFixed(3)+')');
+        ctx.strokeStyle=g; ctx.lineWidth=p.r*IP; ctx.beginPath(); ctx.moveTo(cx,cy-len); ctx.lineTo(cx,cy); ctx.stroke();
+      }
+      var rg=p.r*PHI*PHI*PHI;                                      /* a soft halo, phi cubed times the core */
+      ctx.save(); ctx.translate(cx,cy); ctx.scale(Math.max(0.3,p.sx),Math.max(0.3,p.sy));
+      var g2=ctx.createRadialGradient(0,0,0,0,0,rg);
+      g2.addColorStop(0,'rgba('+p.col+','+(al*IP2).toFixed(3)+')');
+      g2.addColorStop(1,'rgba('+p.col+',0)');
+      ctx.fillStyle=g2; ctx.beginPath(); ctx.arc(0,0,rg,0,6.283); ctx.fill();
+      ctx.fillStyle='rgba('+p.col+','+al.toFixed(3)+')';         /* the core: the same colour and strength as a weave point */
+      ctx.beginPath(); ctx.arc(0,0,p.r,0,6.283); ctx.fill();
+      ctx.restore();
+    });
+    ctx.globalCompositeOperation='source-over';
+  }
+  function loop(ms){
+    raf=0;
+    var dt=last?Math.min(0.05,(ms-last)/1000):0.016; last=ms;
+    if(ms-measured>500) measure();
+    var t=ms/1000;
+    P=P.filter(function(p){ return step(p,dt,t); });
+    R=R.filter(function(r){ r.tm+=dt; return r.tm<r.T; });
+    draw(t);
+    if(P.length||R.length) raf=requestAnimationFrame(loop); else ctx.clearRect(0,0,W,H);
+  }
+  size(); measure();
+  window.addEventListener('resize',function(){ size(); measure(); });
+  document.addEventListener('visibilitychange',function(){ if(!document.hidden && (P.length||R.length)) start(); });
 })();
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b88dac505eae49c09c10d4d643b8bdc0"}'></script><!-- End Cloudflare Web Analytics -->
