@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://www.tonyjoy.com/">
 <meta property="og:site_name" content="Tony Joy">
 <meta property="og:title" content="Tony Joy | Audio technology, product and AI">
-<meta property="og:description" content="The patch cable between artists and machines.">
+<meta property="og:description" content="Art and technology, with Joy as the common factor.">
 <meta property="og:image" content="https://www.tonyjoy.com/share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -269,6 +269,10 @@ section{padding:91.6px 0}
 .build .txt p + p{margin-top:12px}
 
 /* a soft dark halo hugging the letters only, so the lede and skills stay legible over the weave without hiding it */
+h1 .joy{color:var(--hero-accent)}
+h1{max-width:none}
+h1 .nw{white-space:nowrap}
+@media (max-width:420px){h1{font-size:var(--s3)}}
 .lede,.range dt,.range dd{text-shadow:0 0 1px rgba(0,0,0,.9),0 0 5px rgba(0,0,0,.8),0 0 13px rgba(0,0,0,.55)}
 .range dd .d{animation:dotglow 9s ease-in-out infinite;display:inline-block}
 .range div:first-child dd .d2{animation-delay:-2.2s}
@@ -306,7 +310,6 @@ details.build[open] .txt{animation:fadein .5s ease}
     <nav aria-label="Sections">
       <ul>
         <li><a href="#work">Work</a></li>
-        <li><a href="#story">About</a></li>
         <li><a href="#built">Built</a></li>
         <li><a href="#screen">Credits</a></li>
         <li><a href="#listen">Music</a></li>
@@ -320,11 +323,11 @@ details.build[open] .txt{animation:fadein .5s ease}
   <div class="stage hero">
     <canvas class="weave" aria-hidden="true"></canvas>
     <div class="wrap">
-      <h1>The patch cable between artists and machines.</h1>
-      <p class="lede">I introduce and weave new tools into the workflows of professionals who make films, music and games. Then I tell the teams behind those tools what's good, bad and ugly. <span class="cue">[cue ocarina]</span></p>
+      <h1><span aria-hidden="true"><span class="nw"><span class="joy">Joy</span> ×</span> <span class="nw">(Art + Technology)</span></span><span class="vh">Joy is the common factor of art and technology.</span></h1>
+      <p class="lede">I get under the hood of new tools and weave them into the workflows of professionals who make films, music and games.<br>Then I tell the teams behind those tools what's good, bad and ugly. <span class="cue">[cue ocarina]</span></p>
       <dl class="range">
-        <div><dt>Artists</dt><dd><span class="sk">Feature&nbsp;films&nbsp;<span class="d d1" aria-hidden="true">·</span></span> <span class="sk">Pop&nbsp;records&nbsp;<span class="d d2" aria-hidden="true">·</span></span> <span class="sk">Voice&nbsp;casting&nbsp;and&nbsp;direction&nbsp;<span class="d d3" aria-hidden="true">·</span></span> Live&nbsp;concerts</dd></div>
-        <div><dt>Machines</dt><dd><span class="sk">Prompt&nbsp;engineering&nbsp;<span class="d d1" aria-hidden="true">·</span></span> <span class="sk">Product&nbsp;strategy&nbsp;<span class="d d2" aria-hidden="true">·</span></span> <span class="sk">Audio&nbsp;workstations&nbsp;and&nbsp;plugins&nbsp;<span class="d d3" aria-hidden="true">·</span></span> <span class="sk">AI&nbsp;audio&nbsp;datasets&nbsp;<span class="d d4" aria-hidden="true">·</span></span> Spatial&nbsp;audio&nbsp;and&nbsp;Dolby&nbsp;Atmos</dd></div>
+        <div><dt>Art</dt><dd><span class="sk">Feature&nbsp;films&nbsp;<span class="d d1" aria-hidden="true">·</span></span> <span class="sk">Pop&nbsp;records&nbsp;<span class="d d2" aria-hidden="true">·</span></span> <span class="sk">Voice&nbsp;casting&nbsp;and&nbsp;direction&nbsp;<span class="d d3" aria-hidden="true">·</span></span> Live&nbsp;concerts</dd></div>
+        <div><dt>Technology</dt><dd><span class="sk">Prompt&nbsp;engineering&nbsp;<span class="d d1" aria-hidden="true">·</span></span> <span class="sk">Product&nbsp;strategy&nbsp;<span class="d d2" aria-hidden="true">·</span></span> <span class="sk">Audio&nbsp;workstations&nbsp;and&nbsp;plugins&nbsp;<span class="d d3" aria-hidden="true">·</span></span> <span class="sk">AI&nbsp;audio&nbsp;datasets&nbsp;<span class="d d4" aria-hidden="true">·</span></span> Spatial&nbsp;audio&nbsp;and&nbsp;Dolby&nbsp;Atmos</dd></div>
       </dl>
     </div>
     <div class="proof">
@@ -340,12 +343,24 @@ details.build[open] .txt{animation:fadein .5s ease}
   <section id="work">
     <div class="wrap">
       <p class="kicker">Work</p>
-      <h2 style="margin-bottom:48px">I've shaped the tools, and the music made with them.</h2>
+<div class="story" style="margin-bottom:89px">
+      <div>
+        <h2>I sat in the engineer's chair before I sat at the product table.</h2>
+        <p>As a music engineer, my job was to make a room full of complex machines run so smoothly that artists forgot I was in it. Fires were out before anyone knew they had started.</p>
+        <p class="now">Now I sit at the product table too, shaping products for music and post-production. I use what I help make, push it until it breaks, then help the teams fix it.</p>
+        <p class="now">I'm as comfortable with product definition, prompt engineering and generative AI workflows as I am recording a Bösendorfer for a Hollywood film.</p>
+      </div>
+      <figure class="me">
+        <div class="vig photo"><img src="portrait.jpg" width="1120" height="1400" alt="Tony Joy, smiling, seated at a mixing desk in a studio"></div>
+        <figcaption>I'm a firm believer in the power of a smile. A lesson from Mother Teresa, whom I met as a child.</figcaption>
+      </figure>
+    </div>
+      <h3 class="sub" style="font-size:var(--s2);font-weight:600;letter-spacing:-0.02em;margin:0 0 34px">I've shaped the tools, and the music made with them.</h3>
       <div class="bento">
         <article class="card">
           <h3>Sound Particles</h3>
           <p class="role">VP, Business Development and Creative Services · 2022 to 2026</p>
-          <p>I was the global link between engineering and product teams, and the people using their tools. I built partnerships with artists, engineers, global technology companies and leading resellers.</p>
+          <p>I was the global “patch cable” between engineering and product teams, and the people using their tools. I built partnerships with artists, engineers, global technology companies and leading resellers.</p>
           <p>I worked on both sides of the product line: B2C creator tools like Sound Particles 3 and Beat Panner, and a legally cleared B2B audio dataset for AI developers.</p>
         </article>
         <article class="card">
@@ -364,22 +379,6 @@ details.build[open] .txt{animation:fadein .5s ease}
         </article>
       </div>
       <p class="more">That's the short version. <a class="go" href="#contact">Ask me for the long one</a></p>
-    </div>
-  </section>
-
-  <section id="story">
-    <div class="wrap story">
-      <div>
-        <p class="kicker">The invisible engineer</p>
-        <h2>I sat in the engineer's chair before I sat at the product table.</h2>
-        <p>As a music engineer, my job was to make a room full of complex machines run so smoothly that artists forgot I was in it. Fires were out before anyone knew they had started.</p>
-        <p class="now">Now I sit at the product table too, shaping products for music and post-production. I use what I help make, push it until it breaks, then help the teams fix it.</p>
-        <p class="now">I'm as comfortable with product definition, prompt engineering and generative AI workflows as I am recording a Bösendorfer for a Hollywood film.</p>
-      </div>
-      <figure class="me">
-        <div class="vig photo"><img src="portrait.jpg" width="1120" height="1400" alt="Tony Joy, smiling, seated at a mixing desk in a studio"></div>
-        <figcaption>I'm a firm believer in the power of a smile. A lesson from Mother Teresa, whom I met as a child.</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -418,11 +417,11 @@ details.build[open] .txt{animation:fadein .5s ease}
         </details>
         <details class="build" name="built">
           <summary><time>2016</time><h3>Live concerts</h3></summary>
-          <div class="txt"><p>I designed and deployed the rig for A.R. Rahman's performance at TED in 2016.</p><p>From 2017 to 2019 I ran front of house and every technical side of Vidya Vox's live shows, from the US and India to South Africa and Hong Kong.</p></div>
+          <div class="txt"><p>Designed and deployed the rig for A.R. Rahman's performance at TED in 2016.</p><p>From 2017 to 2019 I ran front of house and every technical side of Vidya Vox's live shows, from the US and India to South Africa and Hong Kong.</p></div>
         </details>
         <details class="build" name="built">
           <summary><time>2015</time><h3>A spatial record, early<span class="vh">. Status: </span><span class="tag">FAILED</span></h3></summary>
-          <div class="txt"><p>I co-produced an immersive choral recording at United Recording with Sankar Thiagasamudram, CEO of Audeze, when spatial audio was almost exclusively reserved for sound design. An early attempt at reactive music production.</p><p>It failed. I list it anyway.</p></div>
+          <div class="txt"><p>Co-produced an immersive choral recording at United Recording with Sankar Thiagasamudram, CEO of Audeze, when spatial audio was almost exclusively reserved for sound design. An early attempt at reactive music production.</p><p>It failed. I list it anyway.</p></div>
         </details>
         <details class="build" name="built">
           <summary><time>2014</time><h3>A voice at the fingertips</h3></summary>
@@ -431,11 +430,11 @@ details.build[open] .txt{animation:fadein .5s ease}
         </details>
         <details class="build" name="built">
           <summary><time>2014</time><h3>Gestures in Pro Tools</h3></summary>
-          <div class="txt"><p>I Frankensteined Leap Motion into Pro Tools so each finger could control its own track, in banks of ten.</p></div>
+          <div class="txt"><p>Frankensteined Leap Motion into Pro Tools so each finger could control its own track, in banks of ten.</p></div>
         </details>
         <details class="build" name="built">
           <summary><time>2010</time><h3>Composing in surround</h3></summary>
-          <div class="txt"><p>I engineered A.R. Rahman's room so he could compose in 5.1, when 5.1 was mostly used for mixing.</p><p>Alongside his regular stereo instruments, he could play sampled instruments in 5.1 from an iPad, through a Kyma patch I built. Where his fingertip touched the iPad decided where the sound sat in the room, left to right and front to back.</p></div>
+          <div class="txt"><p>Engineered A.R. Rahman's room so he could compose in 5.1, when 5.1 was mostly used for mixing.</p><p>Alongside his regular stereo instruments, he could play sampled instruments in 5.1 from an iPad, through a Kyma patch I built. Where his fingertip touched the iPad decided where the sound sat in the room, left to right and front to back.</p></div>
         </details>
         <details class="build" name="built">
           <summary><time>2004</time><h3>Ringtones with tactile feedback</h3></summary>
