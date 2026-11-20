@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://www.tonyjoy.com/">
 <meta property="og:site_name" content="Tony Joy">
 <meta property="og:title" content="Tony Joy | Audio technology, product and AI">
-<meta property="og:description" content="Art and technology, with Joy as the common factor.">
+<meta property="og:description" content="Tony Joy works alongside the teams building creative technology, weaving their tools into the workflows of professionals who make films, music and games.">
 <meta property="og:image" content="https://www.tonyjoy.com/share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -78,6 +78,7 @@ h1{font-size:clamp(44px,7.8vw,100px);line-height:1.0;letter-spacing:-0.04em;font
 
 .proof{background:rgba(0,0,0,.35)}
 .proof .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.proof .roots{grid-column:1/-1;margin:0 0 4px}
 .stat{padding:30px 22px 34px 0;border-right:1px solid var(--hero-line);margin-right:22px}
 .stat:last-child{border-right:0;margin-right:0}
 .stat b{display:block;font-size:clamp(28px,3.6vw,44px);letter-spacing:-0.03em;line-height:1.05;font-weight:700;font-variant-numeric:tabular-nums}
@@ -140,9 +141,12 @@ blockquote footer b{color:var(--ink);font-weight:600}
 .tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.12em;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin-left:10px;vertical-align:4px}
 
 /* films */
-.posters{display:grid;grid-template-columns:repeat(6,1fr);gap:28px 16px}
-.poster{margin:0;display:flex;flex-direction:column;gap:10px}
-.poster img{display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;border-radius:12px;background:var(--surface)}
+.posters{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 8*16px)/8.9);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:rgba(127,127,127,.35) transparent;padding-bottom:14px;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+.posters.end{-webkit-mask-image:none;mask-image:none}
+.poster{scroll-snap-align:start;color:inherit;text-decoration:none}
+.poster figure{margin:0;display:flex;flex-direction:column;gap:10px}
+.poster img{display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;border-radius:12px;background:var(--surface);transition:transform .3s ease}
+.poster:hover img,.poster:focus-visible img{transform:translateY(-3px)}
 .poster figcaption{display:flex;flex-direction:column;gap:3px}
 .poster b{font-size:14px;line-height:1.2;letter-spacing:-0.01em}
 .poster i{font-style:normal;font-size:12px;color:var(--muted);line-height:1.3}
@@ -173,6 +177,7 @@ details[open] summary::after{content:"\2212"}
 .rec dt{font-size:13px;font-weight:600;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
 .rec dd{margin:0;font-size:19px;line-height:1.45}
 .rec dd span{color:var(--muted)}
+.more-rec .record{margin:0}.more-rec .rec:last-child{border-bottom:0}
 .smile{margin:0 auto;text-align:center;font-size:clamp(26px,3.6vw,44px);line-height:1.15;letter-spacing:-0.03em;font-weight:700;max-width:16em;text-wrap:balance}
 #smile{padding:120px 0}
 .note{margin:72px 0 0;font-size:clamp(24px,3.2vw,38px);line-height:1.2;letter-spacing:-0.025em;font-weight:700;max-width:22em;text-wrap:balance}
@@ -210,14 +215,14 @@ body > footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wra
   .story .slot{aspect-ratio:4/3}
   .bento{grid-template-columns:1fr}
   .build,.rec{grid-template-columns:1fr;gap:8px}
-  .posters{grid-template-columns:repeat(3,1fr)}
+  .posters{grid-auto-columns:calc((100% - 4*16px)/5.5)}
   .credits{columns:1}
   section{padding:72px 0}
   .contact .wrap{padding-top:84px;padding-bottom:84px}
 }
 @media (max-width:460px){
   .proof .wrap{grid-template-columns:1fr}
-  .posters{grid-template-columns:repeat(2,1fr)}
+  .posters{grid-auto-columns:calc((100% - 3*16px)/3.7)}
   .card{padding:26px}
   .receipt{margin:auto -20px -20px}
 
@@ -285,6 +290,9 @@ h1 .nw{white-space:nowrap}
 @keyframes dotglow{0%,100%{opacity:.55;color:var(--hero-muted);text-shadow:none}50%{opacity:1;color:#eaf2ff;text-shadow:0 0 6px rgba(240,245,255,.9),0 0 14px rgba(41,151,255,.55)}}
 .range dd .d{transform:scale(1.25)}
 @media (prefers-reduced-motion:reduce){.range dd .d{animation:none}}
+/* tense under each row label, and a hairline between the labels and the keywords */
+.range dt .when{display:block;margin-top:5px;font-size:var(--s-1);font-weight:400;letter-spacing:0;text-transform:none;color:var(--hero-muted)}
+@media (min-width:601px){.range dd{border-left:1px solid rgba(255,255,255,.16);padding-left:21px}.range div{grid-template-columns:9.4em 1fr}}
 #screen .sub{max-width:46em}
 .contact h2{max-width:none}
 .contact h2 .l2,#screen .sub .l2{display:block}
@@ -294,6 +302,16 @@ h1 .nw{white-space:nowrap}
 /* Timeline as expandable rows */
 details.build{display:block;margin:0;padding:0;border-top:1px solid var(--line);border-bottom:0}
 details.build:last-child{border-bottom:1px solid var(--line)}
+/* the timeline fades with age: Now and 2026 full strength, each older entry a step dimmer; any entry brightens when hovered or opened */
+details.build>summary{transition:opacity .4s ease}
+details.build:nth-of-type(3)>summary{opacity:.86}
+details.build:nth-of-type(4)>summary{opacity:.75}
+details.build:nth-of-type(5)>summary{opacity:.66}
+details.build:nth-of-type(6)>summary{opacity:.58}
+details.build:nth-of-type(7)>summary{opacity:.51}
+details.build:nth-of-type(8)>summary{opacity:.45}
+details.build:nth-of-type(9)>summary{opacity:.4}
+details.build[open]>summary,details.build>summary:hover,details.build>summary:focus-visible{opacity:1}
 details.build summary{display:grid;grid-template-columns:90px minmax(0,1fr) auto;gap:28px;align-items:baseline;padding:22px 0;font-size:inherit;font-weight:inherit}
 details.build summary::after{font-size:var(--s1);line-height:1}
 details.build summary:hover h3{color:var(--accent)}
@@ -325,14 +343,15 @@ details.build[open] .txt{animation:fadein .5s ease}
     <canvas class="weave" aria-hidden="true"></canvas>
     <div class="wrap">
       <h1><span aria-hidden="true"><span class="nw"><span class="joy">Joy</span> ×</span> <span class="nw">(Art + Technology)</span></span><span class="vh">Joy is the common factor of art and technology.</span></h1>
-      <p class="lede">I get under the hood of new tools and weave them into the workflows of&nbsp;professionals who make films, music and games.<br>Then I tell the teams behind those tools what's good, bad and ugly. <span class="cue">[cue ocarina]</span></p>
+      <p class="lede">I work alongside the teams building creative technology.<br>I get under the hood of their tools and weave them into the workflows of&nbsp;professionals who make films, music and games.<br>Then I tell those teams what's good, bad and ugly. <span class="cue">[cue ocarina]</span></p>
       <dl class="range">
-        <div><dt>Art</dt><dd><span class="sk">Feature&nbsp;films&nbsp;<span class="d d1" aria-hidden="true">·</span></span> <span class="sk">Pop&nbsp;records&nbsp;<span class="d d2" aria-hidden="true">·</span></span> <span class="sk">Voice&nbsp;casting&nbsp;and&nbsp;direction&nbsp;<span class="d d3" aria-hidden="true">·</span></span> Live&nbsp;concerts</dd></div>
-        <div><dt>Technology</dt><dd><span class="sk">Prompt&nbsp;engineering&nbsp;<span class="d d1" aria-hidden="true">·</span></span> <span class="sk">Product&nbsp;strategy&nbsp;<span class="d d2" aria-hidden="true">·</span></span> <span class="sk">Audio&nbsp;workstations&nbsp;and&nbsp;plugins&nbsp;<span class="d d3" aria-hidden="true">·</span></span> <span class="sk">AI&nbsp;audio&nbsp;datasets&nbsp;<span class="d d4" aria-hidden="true">·</span></span> Spatial&nbsp;audio&nbsp;and&nbsp;Dolby&nbsp;Atmos</dd></div>
+        <div><dt>Technology<span class="when">What I do now</span></dt><dd><span class="sk">Prompt&nbsp;engineering&nbsp;<span class="d d1" aria-hidden="true">·</span></span> <span class="sk">Product&nbsp;strategy&nbsp;<span class="d d2" aria-hidden="true">·</span></span> <span class="sk">Audio&nbsp;workstations&nbsp;and&nbsp;plugins&nbsp;<span class="d d3" aria-hidden="true">·</span></span> <span class="sk">AI&nbsp;audio&nbsp;datasets&nbsp;<span class="d d4" aria-hidden="true">·</span></span> Spatial&nbsp;audio&nbsp;and&nbsp;Dolby&nbsp;Atmos</dd></div>
+        <div><dt>Art<span class="when">Where I come from</span></dt><dd><span class="sk">Feature&nbsp;films&nbsp;<span class="d d1" aria-hidden="true">·</span></span> <span class="sk">Pop&nbsp;records&nbsp;<span class="d d2" aria-hidden="true">·</span></span><br><span class="sk">Voice&nbsp;casting&nbsp;and&nbsp;direction&nbsp;<span class="d d3" aria-hidden="true">·</span></span> Live&nbsp;concerts</dd></div>
       </dl>
     </div>
     <div class="proof">
       <div class="wrap">
+        <p class="kicker roots">Creative roots</p>
         <div class="stat"><b>25+</b><span>Film credits on IMDb, across Hollywood and Bollywood</span></div>
         <div class="stat"><b>250+</b><span>Songs I worked on, across artists</span></div>
         <div class="stat"><b>750+</b><span>Radio commercials produced, casting and directing the voiceover for each one</span></div>
@@ -348,7 +367,7 @@ details.build[open] .txt{animation:fadein .5s ease}
       <div>
         <h2>I sat in the engineer's chair before I sat at the product table.</h2>
         <p>As a music engineer, my job was to make a room full of complex machines run so smoothly that artists forgot I was in it. Fires were out before anyone knew they had started.</p>
-        <p class="now">Now I sit at the product table too, shaping products for music and post-production. I use what I help make, push it until it breaks, then help the teams fix it.</p>
+        <p class="now">Now I bring that experience to the product table, shaping products for music and post-production. I use what I help make, push it until it breaks, then help the teams fix it.</p>
         <p class="now">I'm as comfortable with product definition, prompt engineering and generative AI workflows as I am recording a Bösendorfer for a Hollywood film.</p>
       </div>
       <figure class="me">
@@ -450,7 +469,7 @@ details.build[open] .txt{animation:fadein .5s ease}
       <p class="kicker">Credits</p>
       <h2>Hollywood and Bollywood.</h2>
       <p class="sub">String sections, percussion and choirs. Vocalists in English, Hindi, Tamil and Brazilian Portuguese. <span class="l2">Full film list on <a class="go" href="https://www.imdb.com/name/nm5068645/" target="_blank" rel="noopener">IMDb</a></span></p>
-      <div class="posters" id="posters"><figure class="poster"><img src="poster-hundred-foot-journey.jpg" alt="The Hundred-Foot Journey poster" width="600" height="900" loading="lazy"><figcaption><b>The Hundred-Foot Journey</b><i>2014 · Additional Scoring</i></figcaption></figure><figure class="poster"><img src="poster-million-dollar-arm.jpg" alt="Million Dollar Arm poster" width="600" height="900" loading="lazy"><figcaption><b>Million Dollar Arm</b><i>2014 · Asst. Music Scoring Mixer + Engineer</i></figcaption></figure><figure class="poster"><img src="poster-pele.jpg" alt="Pelé poster" width="600" height="900" loading="lazy"><figcaption><b>Pelé</b><i>2016 · Music Engineer</i></figcaption></figure><figure class="poster"><img src="poster-people-like-us.jpg" alt="People Like Us poster" width="600" height="900" loading="lazy"><figcaption><b>People Like Us</b><i>2012 · Sound Engineer</i></figcaption></figure><figure class="poster"><img src="poster-momentum-generation.jpg" alt="Momentum Generation poster" width="600" height="900" loading="lazy"><figcaption><b>Momentum Generation</b><i>2018 · Music Scoring Mixer</i></figcaption></figure><figure class="poster"><img src="poster-rockstar.jpg" alt="Rockstar poster" width="600" height="900" loading="lazy"><figcaption><b>Rockstar</b><i>2011 · Sound Engineer</i></figcaption></figure><figure class="poster"><img src="poster-highway.jpg" alt="Highway poster" width="600" height="900" loading="lazy"><figcaption><b>Highway</b><i>2014 · Sound Engineer</i></figcaption></figure><figure class="poster"><img src="poster-jab-tak-hai-jaan.jpg" alt="Jab Tak Hai Jaan poster" width="600" height="900" loading="lazy"><figcaption><b>Jab Tak Hai Jaan</b><i>2012 · Sound Engineer</i></figcaption></figure><figure class="poster"><img src="poster-raanjhanaa.jpg" alt="Raanjhanaa / Ambikapathy poster" width="600" height="900" loading="lazy"><figcaption><b>Raanjhanaa / Ambikapathy</b><i>2013 · Sound Engineer, Hindi and Tamil releases</i></figcaption></figure><figure class="poster"><img src="poster-mohenjo-daro.jpg" alt="Mohenjo Daro poster" width="600" height="900" loading="lazy"><figcaption><b>Mohenjo Daro</b><i>2016 · Sound Engineer</i></figcaption></figure><figure class="poster"><img src="poster-love-sonia.jpg" alt="Love Sonia poster" width="600" height="900" loading="lazy"><figcaption><b>Love Sonia</b><i>2018 · Music Engineer</i></figcaption></figure><figure class="poster"><img src="poster-ok-jaanu.jpg" alt="OK Jaanu poster" width="600" height="900" loading="lazy"><figcaption><b>OK Jaanu</b><i>2017 · Mastering Engineer, “Sunn Bhavara”</i></figcaption></figure></div>
+      <div class="posters" id="posters"><a class="poster" href="https://www.imdb.com/title/tt2980648/" target="_blank" rel="noopener"><figure><img src="poster-hundred-foot-journey.jpg" alt="The Hundred-Foot Journey poster" width="600" height="900" loading="lazy"><figcaption><b>The Hundred-Foot Journey</b><i>2014 · Additional Scoring</i></figcaption></figure></a><a class="poster" href="https://www.imdb.com/title/tt1647668/" target="_blank" rel="noopener"><figure><img src="poster-million-dollar-arm.jpg" alt="Million Dollar Arm poster" width="600" height="900" loading="lazy"><figcaption><b>Million Dollar Arm</b><i>2014 · Asst. Music Scoring Mixer + Engineer</i></figcaption></figure></a><a class="poster" href="https://www.imdb.com/title/tt0995868/" target="_blank" rel="noopener"><figure><img src="poster-pele.jpg" alt="Pelé poster" width="600" height="900" loading="lazy"><figcaption><b>Pelé</b><i>2016 · Music Engineer</i></figcaption></figure></a><a class="poster" href="https://www.imdb.com/title/tt1716777/" target="_blank" rel="noopener"><figure><img src="poster-people-like-us.jpg" alt="People Like Us poster" width="600" height="900" loading="lazy"><figcaption><b>People Like Us</b><i>2012 · Sound Engineer</i></figcaption></figure></a><a class="poster" href="https://www.imdb.com/title/tt8106568/" target="_blank" rel="noopener"><figure><img src="poster-momentum-generation.jpg" alt="Momentum Generation poster" width="600" height="900" loading="lazy"><figcaption><b>Momentum Generation</b><i>2018 · Music Scoring Mixer</i></figcaption></figure></a><a class="poster" href="https://www.imdb.com/title/tt1839596/" target="_blank" rel="noopener"><figure><img src="poster-rockstar.jpg" alt="Rockstar poster" width="600" height="900" loading="lazy"><figcaption><b>Rockstar</b><i>2011 · Sound Engineer</i></figcaption></figure></a><a class="poster" href="https://www.imdb.com/title/tt2980794/" target="_blank" rel="noopener"><figure><img src="poster-highway.jpg" alt="Highway poster" width="600" height="900" loading="lazy"><figcaption><b>Highway</b><i>2014 · Sound Engineer</i></figcaption></figure></a><a class="poster" href="https://www.imdb.com/title/tt2176013/" target="_blank" rel="noopener"><figure><img src="poster-jab-tak-hai-jaan.jpg" alt="Jab Tak Hai Jaan poster" width="600" height="900" loading="lazy"><figcaption><b>Jab Tak Hai Jaan</b><i>2012 · Sound Engineer</i></figcaption></figure></a><a class="poster" href="https://www.imdb.com/title/tt2359810/" target="_blank" rel="noopener"><figure><img src="poster-raanjhanaa.jpg" alt="Raanjhanaa / Ambikapathy poster" width="600" height="900" loading="lazy"><figcaption><b>Raanjhanaa / Ambikapathy</b><i>2013 · Sound Engineer, Hindi and Tamil releases</i></figcaption></figure></a><a class="poster" href="https://www.imdb.com/title/tt3859980/" target="_blank" rel="noopener"><figure><img src="poster-mohenjo-daro.jpg" alt="Mohenjo Daro poster" width="600" height="900" loading="lazy"><figcaption><b>Mohenjo Daro</b><i>2016 · Sound Engineer</i></figcaption></figure></a><a class="poster" href="https://www.imdb.com/title/tt3823392/" target="_blank" rel="noopener"><figure><img src="poster-love-sonia.jpg" alt="Love Sonia poster" width="600" height="900" loading="lazy"><figcaption><b>Love Sonia</b><i>2018 · Music Engineer</i></figcaption></figure></a><a class="poster" href="https://www.imdb.com/title/tt5764024/" target="_blank" rel="noopener"><figure><img src="poster-ok-jaanu.jpg" alt="OK Jaanu poster" width="600" height="900" loading="lazy"><figcaption><b>OK Jaanu</b><i>2017 · Mastering Engineer, “Sunn Bhavara”</i></figcaption></figure></a></div>
       <details>
         <summary>All credits</summary>
         <div class="credits" id="creditlist"><div class="yr"><h3>2024</h3><ul><li>Red Baraat <span>Mastering Engineer</span></li></ul></div><div class="yr"><h3>2023</h3><ul><li>Red Baraat <span>Mastering Engineer</span></li></ul></div><div class="yr"><h3>2022</h3><ul><li>A.R. Rahman, Panchathan Hollywood Studio, Los Angeles. Avid S6, Genelec Ones Dolby Atmos 7.1.4 <span>Systems Engineering + Integration</span></li></ul></div><div class="yr"><h3>2019</h3><ul><li>Vidya Vox, Honda Celebration of Light, Canada <span>Front of House Engineer</span></li><li>Vidya Vox, Festival of Colors tour, United States <span>Front of House Engineer</span></li><li>99 Songs <span>Music Engineer</span></li></ul></div><div class="yr"><h3>2018</h3><ul><li>Love Sonia <span>Music Engineer</span></li><li>Kuthu Fire Tour, Mauritius <span>Front of House Engineer</span></li><li>Momentum Generation. 2019 Sports Emmy nominee (shared), Outstanding Music Composition/Direction/Lyrics <span>Music Scoring Mixer</span></li><li>Minnale <span>Mastering Engineer</span></li><li>Tamil Born Killer <span>Mastering Engineer</span></li></ul></div><div class="yr"><h3>2017</h3><ul><li>I Miss You <span>Mastering Engineer</span></li><li>Kuthu Fire Tour. Boston, Durban, Johannesburg, Dallas, Pune, Kolkata, Hyderabad, Bangalore, Delhi, Ahmedabad <span>Front of House Engineer</span></li><li>Kuthu Fire EP <span>Mastering Engineer</span></li><li>Vidya Vox Live. Mumbai, Chennai, Bangalore, San Francisco, Los Angeles, Hong Kong, Napa Valley <span>Front of House Engineer</span></li><li>Sunn Bhavara, OK Jaanu <span>Mastering Engineer</span></li></ul></div><div class="yr"><h3>2016</h3><ul><li>A.R. Rahman, TED 2016, Vancouver <span>Performance Rig Design + Systems Engineering</span></li><li>Mohenjo Daro <span>Sound Engineer</span></li><li>A.R. Rahman, Panchathan Record Inn, India <span>Studio Integration + Systems Engineering + Commissioning</span></li><li>Budhia Singh: Born to Run <span>Mastering Engineer</span></li><li>24 <span>Sound Engineer</span></li><li>Pelé <span>Music Engineer</span></li><li>Drifter <span>Mastering Engineer</span></li><li>Unnai Sernthal <span>Mastering Engineer</span></li></ul></div><div class="yr"><h3>2015</h3><ul><li>Lonely Sound <span>Mastering Engineer</span></li><li>Naan Engu Pogiraen <span>Mastering Engineer</span></li><li>I <span>Sound Engineer</span></li><li>Cosmic &amp; Eternal Love <span>Mixing + Mastering Engineer</span></li></ul></div><div class="yr"><h3>2014</h3><ul><li>Margham Kali <span>Mastering Engineer</span></li><li>Children of War <span>Mastering Engineer</span></li><li>Highway <span>Sound Engineer</span></li><li>The Hundred-Foot Journey <span>Additional Scoring</span></li><li>Raunaq <span>Sound Engineer</span></li><li>Lekar Hum Deewana Dil <span>Mixing Engineer</span></li><li>Kochadaiiyaan <span>Mixing Engineer + Sound Engineer</span></li><li>Million Dollar Arm <span>Asst. Music Scoring Mixer + Engineer</span></li></ul></div><div class="yr"><h3>2013</h3><ul><li>Raanjhanaa <span>Sound Engineer</span></li><li>Maryan <span>Sound Engineer</span></li><li>Kadal <span>Sound Engineer</span></li></ul></div><div class="yr"><h3>2012</h3><ul><li>Infinite Love <span>Sound Engineer</span></li><li>Jab Tak Hai Jaan <span>Sound Engineer</span></li><li>Nimma Nimma. Isles of Wonder, London 2012 Olympic Games <span>Mixing Engineer</span></li><li>Classic Incantations <span>Sound Engineer</span></li><li>People Like Us <span>Sound Engineer</span></li><li>Ek Deewana Tha <span>Sound Engineer</span></li><li>Oscar Sangamam, Celebrate the Music, 84th Academy Awards <span>Sound Engineer</span></li></ul></div><div class="yr"><h3>2011</h3><ul><li>Rockstar <span>Sound Engineer</span></li><li>SuperHeavy <span>Sound Engineer</span></li><li>Sajna Re, Gems, Michael Bolton <span>Sound Engineer</span></li></ul></div><div class="yr"><h3>2010</h3><ul><li>Omnisonus <span>Inventor</span></li><li>A.R. Rahman, Panchathan Hollywood Studio, Los Angeles. Euphonix System 5, Bowers &amp; Wilkins 5.1 <span>Studio Integration + Systems Engineering + Commissioning</span></li></ul></div><div class="yr"><h3>2008</h3><ul><li>Radio 1 and Radio 2, Gulf News Broadcasting, Dubai. Through 2009 <span>Radio Production Engineer</span></li></ul></div><div class="yr"><h3>2007</h3><ul><li>Anandabhairavi <span>Additional Sound Design</span></li></ul></div><div class="yr"><h3>2004</h3><ul><li>FirstLight FZ LLC, Dubai Internet City. Through 2005 <span>Mastering Engineer, New Media</span></li></ul></div></div>
@@ -461,7 +480,7 @@ details.build[open] .txt{animation:fadein .5s ease}
   <section id="listen">
     <div class="wrap">
       <p class="kicker">Music</p>
-      <h2 style="margin-bottom:44.5px">250+ songs. One playlist.</h2>
+      <h2 style="margin-bottom:44.5px">250+ songs. One memory lane.</h2>
       <div class="player live"><iframe title="Music Engineering Portfolio playlist on Apple Music" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" height="450" style="width:100%;overflow:hidden;border-radius:14px;border:0" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/playlist/music-engineering-portfolio-tony-joy/pl.u-Zmblxd1CZpMNgm?theme=dark"></iframe></div>
       <div class="links">
         <a href="https://music.apple.com/us/playlist/music-engineering-portfolio-tony-joy/pl.u-Zmblxd1CZpMNgm" target="_blank" rel="noopener">Apple Music</a>
@@ -476,10 +495,15 @@ details.build[open] .txt{animation:fadein .5s ease}
       <dl class="record">
         <div class="rec"><dt>Recognition</dt><dd>Sports Emmy nominee, 2019 <span>(shared). Outstanding Music Composition/Direction/Lyrics, Momentum Generation</span></dd></div>
         <div class="rec"><dt>Residencies</dt><dd>Google Flow Music Sessions <span>(Cohort 2, 2026)</span></dd></div>
-        <div class="rec"><dt>Memberships</dt><dd>Recording Academy <span>(voting member)</span>, Audio Engineering Society, Motion Picture Sound Editors <span>(affiliate)</span></dd></div>
-        <div class="rec"><dt>Education</dt><dd>MA, Post-Production Sound Design<br><span>Bournemouth University</span></dd></div>
         <div class="rec"><dt>Recommended by</dt><dd>A.R. Rahman, Nuno Fonseca, Jeff Rosica and others <span>on</span> <a class="go" href="https://www.linkedin.com/in/music-tonyjoy/details/recommendations/" target="_blank" rel="noopener">LinkedIn</a></dd></div>
       </dl>
+      <details class="more-rec">
+        <summary>Memberships and education</summary>
+        <dl class="record">
+          <div class="rec"><dt>Memberships</dt><dd>Recording Academy <span>(voting member)</span>, Audio Engineering Society, Motion Picture Sound Editors <span>(affiliate)</span></dd></div>
+          <div class="rec"><dt>Education</dt><dd>MA, Post-Production Sound Design<br><span>Bournemouth University</span></dd></div>
+        </dl>
+      </details>
     </div>
   </section>
 
@@ -487,7 +511,7 @@ details.build[open] .txt{animation:fadein .5s ease}
   <div class="stage contact" id="contact">
     <canvas class="weave" aria-hidden="true"></canvas>
     <div class="wrap">
-      <h2>Building AI tools that <span class="keep">expand human creativity?</span></h2>
+      <h2>Building tools that <span class="keep">expand human creativity?</span></h2>
       <p class="pitch">I'd love to help shape and weave them into the workflows of creative professionals worldwide.</p>
       <p class="mail">Let's talk: music (at) tonyjoy.com</p>
       <div class="links">
@@ -881,6 +905,8 @@ t();setInterval(t,15000);})();
   document.addEventListener('visibilitychange',function(){ if(!document.hidden && (P.length||R.length)) start(); });
 })();
 </script>
+
+<script>(function(){var p=document.getElementById('posters');if(!p)return;function u(){p.classList.toggle('end',p.scrollLeft+p.clientWidth>=p.scrollWidth-4)}p.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b88dac505eae49c09c10d4d643b8bdc0"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
