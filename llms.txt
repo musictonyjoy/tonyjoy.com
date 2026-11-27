@@ -1,20 +1,41 @@
 # Tony Joy
 
-> Tony Joy works alongside the teams building creative technology. He gets under the hood of their tools, weaves them into the workflows of professionals who make films, music and games, then tells those teams what's good, bad and ugly. His roots are in feature films, pop records, voice casting and live concerts. Based in Los Angeles.
+> Tony Joy works alongside the teams building creative technology. He gets under the hood of their tools, weaves them into the workflows of professionals who make films, music and games, then tells those teams what's good, bad and ugly. Former VP at Sound Particles, built Avid's first Immersive Audio Lab, and technology advisor to A.R. Rahman since 2007. Based in Los Angeles.
 
-- Sound Particles (2022 to 2026): VP, Business Development and Creative Services. Global link between engineering, product and the professionals who use its tools; built partnerships with global technology companies and leading resellers; helped shape Sound Particles 3, Beat Panner and a legally cleared B2B audio dataset for AI developers.
-- Avid (2018 to 2022): Pro Audio Solutions Specialist. Built and ran Avid's first Immersive Audio Lab in Los Angeles.
-- A.R. Rahman: technology advisor since 2007; ran his Los Angeles studio for eight years, engineering songs and scoring sessions for Hollywood and Bollywood films.
-- Live: designed and deployed A.R. Rahman's performance rig at TED 2016; front of house for Vidya Vox's live shows, 2017 to 2019.
-- Skills: product evangelism, product strategy, prompt engineering, AI audio datasets, audio workstations and plugins, spatial audio, binaural and Dolby Atmos.
-- AI tools: cloud (Claude, Gemini, Mistral, ChatGPT); local (Ollama running Llama, Gemma and gpt-oss); coding (Cursor, Antigravity); test bench (ElevenLabs, Suno, AceForge, Magenta, Google Flow).
-- 25+ film credits on IMDb, 250+ songs, 750+ radio commercials, 1,000+ ringtones.
+His roots are in feature films, pop records, voice casting and live concerts. His work today is product evangelism, product strategy and AI.
+
+## What he does now
+- Technology: product evangelism, product strategy, prompt engineering, AI audio datasets, audio workstations and plugins, spatial audio, binaural and Dolby Atmos.
+- AI testing: puts generative audio tools (ElevenLabs, Suno, AceForge, Magenta, Google Flow) through real-world production scenarios, and tries to break them.
+- AI toolkit: works daily with Claude, Gemini, Mistral and ChatGPT, plus coding agents in Cursor and Antigravity. With their help, he runs open models such as Llama and Gemma locally through Ollama.
+- Builds audio plugins with AI coding agents; published one during his 2026 residency with Google's Flow Music Sessions (Cohort 2).
+- Exploring what quantum measurement could mean for audio production tools, and for how we perceive music (music cognition).
+
+## Experience
+- Sound Particles (2022 to 2026): VP, Business Development and Creative Services. The global link between engineering and product teams and the people using their tools. Built partnerships with artists, engineers, global technology companies and leading resellers. Worked on B2C creator tools (Sound Particles 3, Beat Panner) and a legally cleared B2B audio dataset for AI developers.
+- Avid (2018 to 2022): Pro Audio Solutions Specialist. Designed, built and ran Avid's first Immersive Audio Lab, a Dolby Atmos room in Los Angeles where post-production and music workflows for Pro Tools were developed and tested. Brokered the partnerships with Harman, Auralex and others that equipped it; about two years later Avid headquarters built a second room modeled on it.
+- A.R. Rahman (2007 to present): technology advisor. Ran his Los Angeles studio for eight years, engineering songs and scoring sessions for Hollywood and Bollywood films. Still filters which new tools reach his creative process and designs the workflows around them.
+- Live: designed and deployed A.R. Rahman's performance rig at TED 2016; front of house engineer for Vidya Vox's live shows, 2017 to 2019 (US, India, South Africa, Hong Kong).
+- Earlier: radio production engineer at Gulf News Broadcasting, Dubai (2008 to 2009); ringtones for early mobile phones at FirstLight, Dubai (2004 to 2005), including vibration patterns that followed the bass line.
+
+## Selected projects
+- 2015: co-produced an early immersive choral recording at United Recording with Audeze CEO Sankar Thiagasamudram. Listed on his site as a failure.
+- 2014: built a Kyma patch, with Kyma designer Carla Scaletti and Continuum inventor Lippold Haken, so A.R. Rahman could play a recorded singer's voice on a Haken Continuum.
+- 2014: connected Leap Motion to Pro Tools so each finger controlled its own track.
+- 2010: engineered A.R. Rahman's room so he could compose in 5.1 surround, playing sampled instruments in 5.1 from an iPad through a Kyma patch.
+
+## Credits and recognition
+- 25+ film credits on IMDb across Hollywood and Bollywood, 250+ songs, 750+ radio commercials, 1,000+ ringtones.
+- Films include The Hundred-Foot Journey (additional scoring), Million Dollar Arm (assistant music scoring mixer and engineer), Pelé (music engineer), Momentum Generation (music scoring mixer), People Like Us, Raanjhanaa, Highway, Jab Tak Hai Jaan and Rockstar (sound engineer).
 - Sports Emmy nominee, 2019 (shared): Outstanding Music Composition/Direction/Lyrics, Momentum Generation.
-- Residency: Google Flow Music Sessions, Cohort 2 (2026).
-- Recording Academy voting member; Audio Engineering Society; Motion Picture Sound Editors (affiliate). MA, Post-Production Sound Design, Bournemouth University; AI for Business certificate, Wharton (2020).
+- Recording Academy voting member; Audio Engineering Society; Motion Picture Sound Editors (affiliate).
+- MA, Post-Production Sound Design, Bournemouth University; AI for Business certificate, Wharton (2020).
 
 ## Links
-- Website: https://www.tonyjoy.com/
-- LinkedIn: https://www.linkedin.com/in/music-tonyjoy/
-- IMDb: https://www.imdb.com/name/nm5068645/
+- [Website](https://www.tonyjoy.com/): full profile
+- [Work](https://www.tonyjoy.com/#work): roles at Sound Particles, Avid and with A.R. Rahman
+- [Built](https://www.tonyjoy.com/#built): projects and experiments, 2004 to now
+- [Credits](https://www.tonyjoy.com/#screen): full film, music and live credits
+- [LinkedIn](https://www.linkedin.com/in/music-tonyjoy/)
+- [IMDb](https://www.imdb.com/name/nm5068645/)
 - Contact: music (at) tonyjoy.com
